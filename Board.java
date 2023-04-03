@@ -7,6 +7,7 @@ public class Board {
 
 
     Object[] board1 = {"d", "d", "c", "w", "w", "s", "s", "s", "g", "g", "d", "castle", "c", "w", "s", "s", "s", new Action(1, "Barn", false), "g", "g", "c", "c", "c", "f", "f", "f", "s", "c", "f", "f", "c", "c", "f", "f", "w", "d", "d", "c", "c", "f", "c", "g", "g", "w", "f", "f", "d", "d", "c", "c", "g", "g", new Action(1, "Barn", false), "f", "w", "f", "w", "d", "d", "c", "g", "g", "g", "s", "f", "f", "w", "w", "d", "d", "g", "g", "s", "s", "m", "w", "w", "w", "d", "w", "g", "m", "s", "s", "w", "w", "w", "w", "w", "w", "s", "s", "s", "w", "w", "w", "w", "w", "w", "w"};
+    Object[] board2 = {}
 //    Object[] boards = {board1, board2, board3, board4, board5, board6, board7, board8};
     public Board(int b1, int b2, int b3, int b4) {
         int i;
