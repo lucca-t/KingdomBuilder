@@ -30,11 +30,11 @@ public class KingdomBuilderMain {
         while(num4 == num1 || num4 == num2 || num4 == num3){
             num4 = (int)(Math.random() * 8) + 1;
         }
-        board = Board(num1, num2, num3, num4);
-        players.add(Player("red"));
-        players.add(Player("purple"));
-        players.add(Player("green"));
-        players.add(Player("orange"));
+        board = new Board(num1, num2, num3, num4);
+        players.add(new Player("red"));
+        players.add(new Player("purple"));
+        players.add(new Player("green"));
+        players.add(new Player("orange"));
         for(int i = 0; i < 3; i++){
             int x = (int)(Math.random() * pointCardsall.size());
             pointCards.add(pointCardsall.get(x));
@@ -42,6 +42,15 @@ public class KingdomBuilderMain {
         }
         turn = 1;
         currPlayer = players.get(0);
+        terrains.add("s");
+        terrains.add("g");
+        terrains.add("d");
+        terrains.add("c");
+        terrains.add("m");
+        terrains.add("w");
+        terrains.add("f");
+        discardedBiomes = null;
+        end = false;
 
         //choose 4 random numbers out of 8, create a board object passing in the 4 numbers to the constructor in the order they are chosen
     }
@@ -58,5 +67,8 @@ public class KingdomBuilderMain {
         for (int i = 0; i < 4; i++) {
             board.score(players.get(i));
         }
+    }
+    public ArrayList<Player> getPlayers(){
+        return players;
     }
 }
