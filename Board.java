@@ -1,21 +1,30 @@
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Arrays;
 public class Board {
 
+    //desert: d, canyon: c, water: w, forest: s, flowers: f, grass: g, mountains: m, castle: castle
     private int location;
     private HashMap<int[], HexTile> tiles;
 
 
     Object[] board1 = {"d", "d", "c", "w", "w", "s", "s", "s", "g", "g", "d", "castle", "c", "w", "s", "s", "s", new Action(1, "Barn", false), "g", "g", "c", "c", "c", "f", "f", "f", "s", "c", "f", "f", "c", "c", "f", "f", "w", "d", "d", "c", "c", "f", "c", "g", "g", "w", "f", "f", "d", "d", "c", "c", "g", "g", new Action(1, "Barn", false), "f", "w", "f", "w", "d", "d", "c", "g", "g", "g", "s", "f", "f", "w", "w", "d", "d", "g", "g", "s", "s", "m", "w", "w", "w", "d", "w", "g", "m", "s", "s", "w", "w", "w", "w", "w", "w", "s", "s", "s", "w", "w", "w", "w", "w", "w", "w"};
+    ArrayList<Object> bd1 = new ArrayList(Arrays.asList(board1));
     Object[] board2 = {"d", "d", "c", "w", "w", "s", "s", "g", "g", "g", "d", "c", "w", "f", "f", "s", "s", "s", "g", "g", "d", "d", "w", "f", "f", "s", "s", new Action(2, "Oasis", false), "f", "g", "w", "w", "w", "f", "g", "s", "f", "f", "f", "f", "w", "w", "w", "w", "g", "g", "g", "g", "f", "f", "w", "s", "s", "w", "g", "g", "c", "c", "d", "c", "w", "s", "c", "s", "w", "g", "c", "c", "d", "c", "w", "castle", "c", "f", "w", new Action(2, "Oasis", false), "d", "d", "c", "w", "w", "w", "c", "f", "w", "w", "w", "d", "d", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w"};
-//    Object[] boards = {board1, board2, board3, board4, board5, board6, board7, board8};
+    ArrayList<Object> bd2 = new ArrayList(Arrays.asList(board2));
+    Object[] board3 = {"g", "g", "s", "s", "s", "w", "g", "s", "s", "f", "g", "f", "s", "s", "w", "g", "s", "s", "f", "f", "g", "f", "f", "s", "w", "g", "g", "f", "f", "f", "f", "f", "s", "s", "w", "g", "m", "f", "d", "c", "c", "f", "castle", "s", "w", "g", "d", "d", "d", "d", "c", "c", "s", "w", "g", "g", "m", "m", "d", "d", "c", "c", "w", "w", "w", "g", "d", "d", "d", "c", "w", "w", "g", "g", "w", "w", new Action(2, "Harbor", false), "c", "m", "c", "w", "d", "castle", "g", "w", "m", "w", "c", "c", "c", "w", "d", "d", "w", "w", "w", "w", "c", "c", "c"};
+    ArrayList<Object> bd3 = new ArrayList(Arrays.asList(board3));
+    Object[] board4 = {"g", "g", "g", "s", "s", "w", "g", "s", "s", "g", "g", "g", "castle", "s", "w", "g", "s", "s", "s", "g", "f", "f", "g", "s", "s", "w", "g", "g", "s", "f", "f", "c", "g", "s", "w", "f", new Action(2, "Oracle", false), "s", "s", "f", "f", "f", "c", "c", "w", "f", "f", "w", "w", "m", "m", "c", "g", "g", "w", "w", "w", "d", "d", "c", "c", "c", "m", "g", "f", "f", "f", "d", "d", "c", "c", "castle", "d", "m", "d", "f", "f", "c", "c", "w", "w", "w", "d", "d", "d", "d", "m", "c", "c", "w", "w", "w", "w", "d", "d", "d", "d", "d", "c"};
+//    Object[] board5 = {}
+    Object[][] boards = {board1, board2, board3, board4};
     public Board(int b1, int b2, int b3, int b4) {
         int i;
         int r = 0;
         int c = 0;
         for (i = 0; i < 100; i++) {
             int[] coord = {r, c};
-            tiles.put(boards[b1][i], coord);
+            Object[] temp = boards[b1];
+            tiles.put(coord, (boards[b1][i]))(HexTile);
             r++;
             c++;
         }
