@@ -66,7 +66,10 @@ public class Board {
         scoreCitizens(p);
         scoreFarmers(p);
     }
-    public int scoreFishermen() {}
+    public int scoreFishermen() {
+    }
+    public int scoreFishermen(int score, int place){
+    }
     public int scoreMiners() {}
     public int scoreMerchants() {}
     public int scoreWorkers() {}
