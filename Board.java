@@ -24,7 +24,7 @@ public class Board {
         for (i = 0; i < 100; i++) {
             int[] coord = {r, c};
             Object[] temp = boards[b1];
-            tiles.put(coord, (boards[b1][i]))(HexTile);
+            tiles.put(coord, new HexTile((String)(boards[b1][i])));
             r++;
             c++;
         }
@@ -32,7 +32,7 @@ public class Board {
         int c = 11;
         for (i = 0; i < 100; i++) {
             int[] coord = {r, c};
-            tiles.put(boards[b2][i], coord);
+            tiles.put(coord, new HexTile((String)(boards[b2][i])));
             r++;
             c++;
         }
@@ -40,7 +40,7 @@ public class Board {
         int c = 0;
         for (i = 0; i < 100; i++) {
             int[] coord = {r, c};
-            tiles.put(boards[b3][i], coord);
+            tiles.put(coord, new HexTile((String)(boards[b3][i])));
             r++;
             c++;
         }
@@ -48,7 +48,7 @@ public class Board {
         int c = 11;
         for (i = 0; i < 100; i++) {
             int[] coord = {r, c};
-            tiles.put(boards[b4][i], coord);
+            tiles.put(coord, new HexTile((String)(boards[b4][i])));
             r++;
             c++;
         }
