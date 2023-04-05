@@ -18,7 +18,7 @@ public class Board {
         int r = 0;
         int c = 0;
         for (i = 0; i < 100; i++) {
-            int[] coord = {r, c};
+            double[] coord = {r, c};
             Object[] temp = boards[b1];
             tiles.put(coord, new HexTile((String)(boards[b1][i])));
             r++;
@@ -27,7 +27,7 @@ public class Board {
         r = 0;
         c = 11;
         for (i = 0; i < 100; i++) {
-            int[] coord = {r, c};
+            double[] coord = {r, c};
             tiles.put(coord, new HexTile((String)(boards[b2][i])));
             r++;
             c++;
@@ -35,7 +35,7 @@ public class Board {
         r = 11;
         c = 0;
         for (i = 0; i < 100; i++) {
-            int[] coord = {r, c};
+            double[] coord = {r, c};
             tiles.put(coord, new HexTile((String)(boards[b3][i])));
             r++;
             c++;
@@ -43,7 +43,7 @@ public class Board {
         r = 11;
         c = 11;
         for (i = 0; i < 100; i++) {
-            int[] coord = {r, c};
+            double[] coord = {r, c};
             tiles.put(coord, new HexTile((String)(boards[b4][i])));
             r++;
             c++;
@@ -51,20 +51,25 @@ public class Board {
     }
 
     public void score(Player p) {
-        scoreFishermen(p);
-        scoreMiners(p);
-        scoreMerchants(p);
-        scoreWorkers(p);
-        scoreDiscoverers(p);
-        scoreKnights(p);
-        scoreHermits(p);
-        scoreLords(p);
-        scoreCitizens(p);
-        scoreFarmers(p);
+        int temp = p.getScore();
+        temp += scoreFishermen(p);
+        temp += scoreMiners(p);
+        temp += scoreMerchants(p);
+        temp += scoreWorkers(p);
+        temp += scoreDiscoverers(p);
+        temp += scoreKnights(p);
+        temp += scoreHermits(p);
+        temp += scoreLords(p);
+        temp += scoreCitizens(p);
+        temp += scoreFarmers(p);
+        p.setScore(temp);
     }
-    public int scoreFishermen() {
+    public int scoreFishermen(Player player) {
+
     }
-    public int scoreFishermen(int score, int place){
+
+    public int scoreFishermen(int score, double[] crd){
+
     }
     public int scoreMiners() {}
     public int scoreMerchants() {}

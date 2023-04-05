@@ -21,12 +21,15 @@ public class KingdomBuilderMain {
         pointCardsall.add("Workers");
 
         num1 = (int)(Math.random() * 8) + 1;
+        num2 = (int)(Math.random() * 8) + 1;
         while(num1==num2){
             num2 = (int)(Math.random() * 8) + 1;
         }
+        num3 = (int)(Math.random() * 8) + 1;
         while(num3==num1 || num3==num2) {
             num3 = (int)(Math.random() * 8) + 1;
         }
+        num4 = (int)(Math.random() * 8) + 1;
         while(num4 == num1 || num4 == num2 || num4 == num3){
             num4 = (int)(Math.random() * 8) + 1;
         }
