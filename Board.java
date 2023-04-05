@@ -24,24 +24,24 @@ public class Board {
             r++;
             c++;
         }
-        int r = 0;
-        int c = 11;
+        r = 0;
+        c = 11;
         for (i = 0; i < 100; i++) {
             int[] coord = {r, c};
             tiles.put(coord, new HexTile((String)(boards[b2][i])));
             r++;
             c++;
         }
-        int r = 11;
-        int c = 0;
+        r = 11;
+        c = 0;
         for (i = 0; i < 100; i++) {
             int[] coord = {r, c};
             tiles.put(coord, new HexTile((String)(boards[b3][i])));
             r++;
             c++;
         }
-        int r = 11;
-        int c = 11;
+        r = 11;
+        c = 11;
         for (i = 0; i < 100; i++) {
             int[] coord = {r, c};
             tiles.put(coord, new HexTile((String)(boards[b4][i])));
