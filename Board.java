@@ -82,6 +82,9 @@ public class Board {
         p.setScore(temp);
     }
     public int scoreFishermen(Player p) {
+        for(int i = 0; i < p.getOccupiedTiles().size(); i++){
+
+        }
 
     }
 

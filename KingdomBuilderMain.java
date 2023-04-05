@@ -55,7 +55,7 @@ public class KingdomBuilderMain {
         terrains.add("m");
         terrains.add("w");
         terrains.add("f");
-        discardedBiomes = null;
+        discardedBiomes = new ArrayList<String>();
         end = false;
 
         //choose 4 random numbers out of 8, create a board object passing in the 4 numbers to the constructor in the order they are chosen
