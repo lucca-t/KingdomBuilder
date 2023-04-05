@@ -5,6 +5,7 @@ public class Player{
     private String settlementColor;
     private int settlements;
     private ArrayList<Action> availableActions;
+    private ArrayList<HexTile> occupiedTiles;
     private String currTerrain;
 
     public Player(String col){
@@ -13,6 +14,7 @@ public class Player{
         settlementColor = col;
         availableActions = null;
         currTerrain = null;
+        occupiedTiles = new ArrayList<HexTile>();
     }
     public void setScore(int pnt){
         points = pnt;
@@ -40,5 +42,11 @@ public class Player{
     }
     public void decSettlements(int amount){
         settlements -= amount;
+    }
+    public void addSettlementTile(HexTile h) {
+        occupiedTiles.add(h);
+    }
+    public ArrayList<HexTile> getOccupiedTiles() {
+        return occupiedTiles;
     }
 }

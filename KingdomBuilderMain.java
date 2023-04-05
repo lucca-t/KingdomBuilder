@@ -20,6 +20,7 @@ public class KingdomBuilderMain {
         pointCardsall.add("Miners");
         pointCardsall.add("Workers");
 
+        //choosing boards
         num1 = (int)(Math.random() * 8) + 1;
         num2 = (int)(Math.random() * 8) + 1;
         while(num1==num2){
@@ -34,6 +35,8 @@ public class KingdomBuilderMain {
             num4 = (int)(Math.random() * 8) + 1;
         }
         board = new Board(num1, num2, num3, num4);
+
+        //
         players.add(new Player("red"));
         players.add(new Player("purple"));
         players.add(new Player("green"));
