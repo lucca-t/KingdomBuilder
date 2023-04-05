@@ -50,9 +50,21 @@ public class Board {
         }
     }
 
-    public ArrayList<HexTile> adjacent(double[] coord){
-        ArrayList<HexTile> ret = null;
-
+    public ArrayList<double[]> findAdjacencies(double[] coord){
+        ArrayList<double[]> adjacent = new ArrayList<double[]>();
+        double[] left = {coord[0] - 1, coord[1]};
+        double[] right = {coord[0] + 1, coord[1]};
+        double[] tL = {coord[0] - 0.5, coord[1] + 1};
+        double[] tR = {coord[0] + 0.5, coord[1] + 1};
+        double[] bL = {coord[0] - 0.5, coord[1] - 1};
+        double[] bR = {coord[0] + 0.5, coord[1] - 1};
+        adjacent.add(left);
+        adjacent.add(right);
+        adjacent.add(tL);
+        adjacent.add(tR);
+        adjacent.add(bL);
+        adjacent.add(bR);
+        return adjacent;
     }
 
     public void score(Player p) {
