@@ -50,6 +50,11 @@ public class Board {
         }
     }
 
+    public ArrayList<HexTile> adjacent(double[] coord){
+        ArrayList<HexTile> ret = null;
+
+    }
+
     public void score(Player p) {
         int temp = p.getScore();
         temp += scoreFishermen(p);
@@ -64,7 +69,7 @@ public class Board {
         temp += scoreFarmers(p);
         p.setScore(temp);
     }
-    public int scoreFishermen(Player player) {
+    public int scoreFishermen(Player p) {
 
     }
 
