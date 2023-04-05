@@ -2,12 +2,13 @@ public class Action {
     private int location;
     private String type;
     private boolean used;
+    private int usages;
 
     public Action(int loc, String ty, boolean u){
         location = loc;
         type = ty;
         used = u;
-
+        usages = 0;
     }
     public String getType(){
         return type;
