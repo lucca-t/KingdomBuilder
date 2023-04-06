@@ -4,7 +4,7 @@ public class Player{
     private int points;
     private String settlementColor;
     private int settlements;
-    private ArrayList<Action> availableActions;
+    private ArrayList<Action> actions;
     private ArrayList<double[]> occupiedTiles;
     private String currTerrain;
 
@@ -12,7 +12,7 @@ public class Player{
         points = 0;
         settlements = 40;
         settlementColor = col;
-        availableActions = new ArrayList<Action>();
+        actions = new ArrayList<Action>();
         currTerrain = "";
         occupiedTiles = new ArrayList<double[]>();
     }
@@ -23,10 +23,13 @@ public class Player{
         return points;
     }
     public void addActions(Action x){
-        availableActions.add(x);
+        actions.add(x);
     }
     public Action getAction(int i){
-        return availableActions.get(i);
+        return actions.get(i);
+    }
+    public ArrayList<Action> getActions() {
+        return actions;
     }
     public void setColor(String col){
         settlementColor = col;
