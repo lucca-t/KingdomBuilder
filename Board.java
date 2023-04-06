@@ -81,12 +81,27 @@ public class Board {
         temp += scoreFarmers(p);
         p.setScore(temp);
     }
+    public void setCheckedFalse(double[] crd){
+        tiles.get(crd).setCheck(false);
+    }
+    public int horizontaladj(Player p){
+        String col = p.getColor();
+        for(int i = 0; i < p.getOccupiedTiles().size(); i++){
+            //get arraylist of all y coordinates of all settlements then get the number of settlements on each y coordinate then return the largest value
+        }
+    }
     public int scoreFishermen(Player p) {
         int cnt = 0;
         for(int i = 0; i < p.getOccupiedTiles().size(); i++){
             ArrayList<double[]> temp = findAdjacencies(p.getOccupiedTiles().get(i));
             for(int k = 0; k < temp.size(); k++){
                 cnt+=scoreFishermen(temp.get(k));
+            }
+        }
+        for(int i = 0; i < p.getOccupiedTiles().size(); i++){
+            ArrayList<double[]> temp = findAdjacencies(p.getOccupiedTiles().get(i));
+            for(int k = 0; k < temp.size(); k++){
+                setCheckedFalse(temp.get(k));
             }
         }
         return cnt;
@@ -108,6 +123,12 @@ public class Board {
                 cnt+=scoreMiners(temp.get(k));
             }
         }
+        for(int i = 0; i < p.getOccupiedTiles().size(); i++){
+            ArrayList<double[]> temp = findAdjacencies(p.getOccupiedTiles().get(i));
+            for(int k = 0; k < temp.size(); k++){
+                setCheckedFalse(temp.get(k));
+            }
+        }
         return cnt;
     }
     public int scoreMiners(double[] crd){
@@ -119,8 +140,36 @@ public class Board {
             return 0;
         }
     }
+    public int scoreWorkers(Player p) {
+        int cnt = 0;
+        for(int i = 0; i < p.getOccupiedTiles().size(); i++){
+            ArrayList<double[]> temp = findAdjacencies(p.getOccupiedTiles().get(i));
+            for(int k = 0; k < temp.size(); k++){
+                cnt+=scoreWorkers(temp.get(k));
+            }
+        }
+        for(int i = 0; i < p.getOccupiedTiles().size(); i++){
+            ArrayList<double[]> temp = findAdjacencies(p.getOccupiedTiles().get(i));
+            for(int k = 0; k < temp.size(); k++){
+                setCheckedFalse(temp.get(k));
+            }
+        }
+        return cnt;
+    }
+    public int scoreWorkers(double[] crd){
+        if(tiles.get(crd).getType().equals("castle") && tiles.get(crd).getChecked() == false){
+            tiles.get(crd).setCheck(true);
+            return 1;
+        }
+        else if(tiles.get(crd).getType().equals("action") && tiles.get(crd).getChecked() == false){
+            tiles.get(crd).setCheck(true);
+            return 1;
+        }
+        else{
+            return 0;
+        }
+    }
     public int scoreMerchants() {}
-    public int scoreWorkers() {}
     public int scoreDiscoverers() {}
     public int scoreKnights() {}
     public int scoreHermits() {}
