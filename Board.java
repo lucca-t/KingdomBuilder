@@ -100,8 +100,24 @@ public class Board {
             return 0;
         }
     }
-    public int scoreMiners() {
-
+    public int scoreMiners(Player p) {
+        int cnt = 0;
+        for(int i = 0; i < p.getOccupiedTiles().size(); i++){
+            ArrayList<double[]> temp = findAdjacencies(p.getOccupiedTiles().get(i));
+            for(int k = 0; k < temp.size(); k++){
+                cnt+=scoreMiners(temp.get(k));
+            }
+        }
+        return cnt;
+    }
+    public int scoreMiners(double[] crd){
+        if(tiles.get(crd).getType().equals("m") && tiles.get(crd).getChecked() == false){
+            tiles.get(crd).setCheck(true);
+            return 1;
+        }
+        else{
+            return 0;
+        }
     }
     public int scoreMerchants() {}
     public int scoreWorkers() {}
