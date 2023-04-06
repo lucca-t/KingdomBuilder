@@ -82,16 +82,27 @@ public class Board {
         p.setScore(temp);
     }
     public int scoreFishermen(Player p) {
+        int cnt = 0;
         for(int i = 0; i < p.getOccupiedTiles().size(); i++){
-
+            ArrayList<double[]> temp = findAdjacencies(p.getOccupiedTiles().get(i));
+            for(int k = 0; k < temp.size(); k++){
+                cnt+=scoreFishermen(temp.get(k));
+            }
         }
+        return cnt;
+    }
+    public int scoreFishermen(double[] crd){
+        if(tiles.get(crd).getType().equals("w") && tiles.get(crd).getChecked() == false){
+            tiles.get(crd).setCheck(true);
+            return 1;
+        }
+        else{
+            return 0;
+        }
+    }
+    public int scoreMiners() {
 
     }
-
-    public int scoreFishermen(int score, double[] crd){
-
-    }
-    public int scoreMiners() {}
     public int scoreMerchants() {}
     public int scoreWorkers() {}
     public int scoreDiscoverers() {}

@@ -8,7 +8,6 @@ public class HexTile {
     public HexTile(String t) {
         type = t;
         edge = false;
-
         occupant = null;
         checked = false;
     }
