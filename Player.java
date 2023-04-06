@@ -6,14 +6,14 @@ public class Player{
     private int settlements;
     private ArrayList<Action> actions;
     private ArrayList<double[]> occupiedTiles;
-    private String currTerrain;
+    private Card terrain;
 
     public Player(String col){
         points = 0;
         settlements = 40;
         settlementColor = col;
         actions = new ArrayList<Action>();
-        currTerrain = "";
+        terrain = null;
         occupiedTiles = new ArrayList<double[]>();
     }
     public void setScore(int pnt){
@@ -37,16 +37,19 @@ public class Player{
     public String getColor(){
         return settlementColor;
     }
-    public void setTerrain(String ter){
-        currTerrain = ter;
+    public void setTerrain(Card ter){
+        terrain = ter;
     }
-    public String getTerrain(){
-        return currTerrain;
+    public Card getTerrain(){
+        return terrain;
+    }
+    public int getNumSettlements() {
+        return settlements;
     }
     public void decSettlements(int amount){
         settlements -= amount;
     }
-    public void addSettlementTile(HexTile h) {
+    public void addSettlementTile(double[] h) {
         occupiedTiles.add(h);
     }
     public ArrayList<double[]> getOccupiedTiles() {

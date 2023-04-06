@@ -1,8 +1,10 @@
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class KingdomBuilderMain {
     private ArrayList<Player> players;
-    private ArrayList<String> pointCards, terrains, discardedBiomes, pointCardsall;
+    private ArrayList<String> pointCards, discardedBiomes, pointCardsall;
+    private ArrayList<Card> terrains;
     private int turn, num1, num2, num3, num4;
     private Board board;
     public boolean end;
@@ -46,16 +48,14 @@ public class KingdomBuilderMain {
             pointCardsall.remove(x);
         }
         turn = 0;
-        for (int i = 0; i < 5; i++) {
-            terrains.add
-        }
-        terrains.add("s");
-        terrains.add("g");
-        terrains.add("d");
-        terrains.add("c");
-        terrains.add("m");
-        terrains.add("w");
-        terrains.add("f");
+        resetTerrainDeck();
+//        terrains.add("s");
+//        terrains.add("g");
+//        terrains.add("d");
+//        terrains.add("c");
+//        terrains.add("m");
+//        terrains.add("w");
+//        terrains.add("f");
         discardedBiomes = new ArrayList<String>();
         end = false;
         runGame();
@@ -63,10 +63,47 @@ public class KingdomBuilderMain {
     }
 
     public void resetTerrainDeck() {
-
+        terrains.clear();
+        for (int i = 0; i < 5; i++) {
+            terrains.add(0, new Card("s"));
+            terrains.get(0).setVisibility(false);
+        }
+        for (int i = 0; i < 5; i++) {
+            terrains.add(0, new Card("g"));
+            terrains.get(0).setVisibility(false);
+        }
+        for (int i = 0; i < 5; i++) {
+            terrains.add(0, new Card("d"));
+            terrains.get(0).setVisibility(false);
+        }
+        for (int i = 0; i < 5; i++) {
+            terrains.add(0, new Card("c"));
+            terrains.get(0).setVisibility(false);
+        }
+        for (int i = 0; i < 5; i++) {
+            terrains.add(0, new Card("f"));
+            terrains.get(0).setVisibility(false);
+        }
+        Collections.shuffle(terrains);
     }
 
     public void runGame() {
+        while (!end) {
+            playTurn();
+            if (turn == 3) {
+                for (int i = 0; i < players.size(); i++) {
+                    if (players.get(i).getNumSettlements() == 0) {
+                        //might have issues?
+                        endGame();
+                        break;
+                    }
+                }
+            }
+            nextTurn();
+        }
+    }
+
+    public void playTurn() {
 
     }
 
@@ -75,7 +112,11 @@ public class KingdomBuilderMain {
         for (int i = 0; i < temp.size(); i++) {
             temp.get(i).setUsed(false);
         }
+        players.get(turn).setTerrain(null);
         turn++;
+        int choiceTerrain = (int)(Math.random()*25);
+        players.get(turn).setTerrain(terrains.get(choiceTerrain));
+        terrains.remove(choiceTerrain);
         turn = turn%4;
     }
     public void endGame(){
