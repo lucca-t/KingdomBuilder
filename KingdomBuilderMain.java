@@ -2,9 +2,8 @@ import java.util.ArrayList;
 
 public class KingdomBuilderMain {
     private ArrayList<Player> players;
-    private ArrayList<String> pointCards, terrains, biomes, pointCardsall;
+    private ArrayList<String> pointCards, terrains, discardedBiomes, pointCardsall;
     private int turn, num1, num2, num3, num4;
-    private Player currPlayer;
     private Board board;
     public boolean end;
 
@@ -47,7 +46,9 @@ public class KingdomBuilderMain {
             pointCardsall.remove(x);
         }
         turn = 0;
-        currPlayer = players.get(turn);
+        for (int i = 0; i < 5; i++) {
+            terrains.add
+        }
         terrains.add("s");
         terrains.add("g");
         terrains.add("d");
@@ -61,7 +62,7 @@ public class KingdomBuilderMain {
         //choose 4 random numbers out of 8, create a board object passing in the 4 numbers to the constructor in the order they are chosen
     }
 
-    public void resetBiomeDeck() {
+    public void resetTerrainDeck() {
 
     }
 
