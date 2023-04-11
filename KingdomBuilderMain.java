@@ -8,6 +8,7 @@ public class KingdomBuilderMain {
     private int turn, num1, num2, num3, num4;
     private Board board;
     public boolean end;
+    private ArrayList<Double[]> settlementCords;
 
     public KingdomBuilderMain () {
         pointCardsall.add("Citizen");
@@ -63,6 +64,7 @@ public class KingdomBuilderMain {
             players.get(j).setTerrain(terrains.get(choiceTerrain));
             terrains.remove(choiceTerrain);
         }
+        settlementCords = new ArrayList<Double[]>();
         runGame();
         //choose 4 random numbers out of 8, create a board object passing in the 4 numbers to the constructor in the order they are chosen
     }
@@ -95,6 +97,10 @@ public class KingdomBuilderMain {
         return players.get(turn);
     }
 
+    public void setSettlementCord(ArrayList<Double[]> sC) {
+        settlementCords = sC;
+    }
+
     public void runGame() {
         while (!end) {
             for (int j = 0; j < players.size(); j++) {
@@ -104,6 +110,7 @@ public class KingdomBuilderMain {
                 terrains.remove(choiceTerrain);
             }
             playTurn();
+
             if (turn == 3) {
                 for (int i = 0; i < players.size(); i++) {
                     if (players.get(i).getNumSettlements() == 0) {
@@ -118,8 +125,10 @@ public class KingdomBuilderMain {
     }
 
 
-    public void playTurn(ArrayList<Double[]> settlementCords){
-        board.getBoard().g
+    public void playTurn(){
+        for (int i = 0; i < settlementCords.size(); i++) {
+            board.getBoard().get(settlementCords.get(i)).setOccupancy(players.get(turn));
+        }
     }
 
     public void nextTurn(){
