@@ -58,6 +58,11 @@ public class KingdomBuilderMain {
 //        terrains.add("f");
         discardedBiomes = new ArrayList<String>();
         end = false;
+        for (int j = 0; j < players.size(); j++) {
+            int choiceTerrain = (int)(Math.random()*25);
+            players.get(j).setTerrain(terrains.get(choiceTerrain));
+            terrains.remove(choiceTerrain);
+        }
         runGame();
         //choose 4 random numbers out of 8, create a board object passing in the 4 numbers to the constructor in the order they are chosen
     }
@@ -86,9 +91,18 @@ public class KingdomBuilderMain {
         }
         Collections.shuffle(terrains);
     }
+    public Player getTurnPlayer() {
+        return players.get(turn);
+    }
 
     public void runGame() {
         while (!end) {
+            for (int j = 0; j < players.size(); j++) {
+                int choiceTerrain = (int)(Math.random()*25);
+                players.get(j).setTerrain(terrains.get(choiceTerrain));
+                players.get(j).getTerrain().setVisibility(false);
+                terrains.remove(choiceTerrain);
+            }
             playTurn();
             if (turn == 3) {
                 for (int i = 0; i < players.size(); i++) {
@@ -103,8 +117,9 @@ public class KingdomBuilderMain {
         }
     }
 
-    public void playTurn() {
 
+    public void playTurn(ArrayList<Double[]> settlementCords){
+        board.getBoard().g
     }
 
     public void nextTurn(){
@@ -114,9 +129,13 @@ public class KingdomBuilderMain {
         }
         players.get(turn).setTerrain(null);
         turn++;
+        if (terrains.size() == 0) {
+            resetTerrainDeck();
+        }
         int choiceTerrain = (int)(Math.random()*25);
         players.get(turn).setTerrain(terrains.get(choiceTerrain));
         terrains.remove(choiceTerrain);
+        players.get(turn).getTerrain().setVisibility(true);
         turn = turn%4;
     }
     public void endGame(){
