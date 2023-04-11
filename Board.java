@@ -92,7 +92,7 @@ public class Board {
     public void setCheckedFalse(double[] crd){
         tiles.get(crd).setCheck(false);
     }
-    public int horizontaladj(Player p){
+    public int horizontalAdj(Player p){
         String col = p.getColor();
         ArrayList<Double> temp = new ArrayList<Double>();
         ArrayList<Integer> cnts = new ArrayList<Integer>();
