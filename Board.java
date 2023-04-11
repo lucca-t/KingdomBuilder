@@ -81,14 +81,43 @@ public class Board {
         temp += scoreFarmers(p);
         p.setScore(temp);
     }
+    public boolean contains(ArrayList<Double> x, double y){
+        for(int i = 0; i < x.size(); i++){
+            if(x.get(i) == y){
+                return true;
+            }
+        }
+        return false;
+    }
     public void setCheckedFalse(double[] crd){
         tiles.get(crd).setCheck(false);
     }
     public int horizontaladj(Player p){
         String col = p.getColor();
+        ArrayList<Double> temp = new ArrayList<Double>();
+        ArrayList<Integer> cnts = new ArrayList<Integer>();
         for(int i = 0; i < p.getOccupiedTiles().size(); i++){
-            //get arraylist of all y coordinates of all settlements then get the number of settlements on each y coordinate then return the largest value
+            if(!contains(temp, p.getOccupiedTiles().get(i)[1])) {
+                temp.add(p.getOccupiedTiles().get(i)[1]);
+            }
         }
+        for(int i = 0; i < temp.size(); i++){
+            double x = temp.get(i);
+            int y = 0;
+            for(int k = 0; k < p.getOccupiedTiles().size(); k++){
+                if(p.getOccupiedTiles().get(k)[1] == x){
+                    y++;
+                }
+            }
+            cnts.add(y);
+        }
+        int bigger = 0;
+        for(int i = 0; i < cnts.size(); i++){
+            if(bigger < cnts.get(i)){
+                bigger = cnts.get(i);
+            }
+        }
+        return bigger;
     }
     public int scoreFishermen(Player p) {
         int cnt = 0;
@@ -177,5 +206,8 @@ public class Board {
     public int scoreCitizens() {}
     public int scoreFarmers() {}
     public ArrayList<HexTile> findValidPlacements() {}
+    public HashMap<double[], HexTile> getBoard(){
+        return tiles;
+    }
 
 }

@@ -5,13 +5,12 @@ public class HexTile {
     private boolean checked;
     private Player occupant;
 
-    public HexTile(String t) {
+    public HexTile(String t, double[] coord) {
         type = t;
         edge = false;
         occupant = null;
         checked = false;
     }
-
     public void setOccupancy(Player p) {occupant = p;}
 
     public Player getOccupancy() {return occupant;}
