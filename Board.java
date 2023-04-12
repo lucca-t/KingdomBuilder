@@ -92,11 +92,12 @@ public class Board {
     public void setCheckedFalse(double[] crd){
         tiles.get(crd).setCheck(false);
     }
-    public int horizontalAdj(Player p){
+    public int horizontaladj(Player p){
         String col = p.getColor();
         ArrayList<Double> temp = new ArrayList<Double>();
         ArrayList<Integer> cnts = new ArrayList<Integer>();
         for(int i = 0; i < p.getOccupiedTiles().size(); i++){
+            //get arraylist of all y coordinates of all settlements then get the number of settlements on each y coordinate then return the largest value
             if(!contains(temp, p.getOccupiedTiles().get(i)[1])) {
                 temp.add(p.getOccupiedTiles().get(i)[1]);
             }
@@ -104,16 +105,9 @@ public class Board {
         for(int i = 0; i < temp.size(); i++){
             double x = temp.get(i);
             int y = 0;
-            double[] hi = null;
             for(int k = 0; k < p.getOccupiedTiles().size(); k++){
-                if(p.getOccupiedTiles().get(k)[1] == x) {
-                    hi =
-                    if(){
-                        y++;
-                        //recursive method that has input of double[], if next tile to the right or left has a settlement it,
-                        //adds point and recursive input with the one to the right or left plus one for score, if not it stops and returns 0
-                        //loop through occupied tiles and do the method for each one then input the score counts int an array list and choose the biggest one and return 2*that value
-                    }
+                if(p.getOccupiedTiles().get(k)[1] == x){
+                    y++;
                 }
             }
             cnts.add(y);
