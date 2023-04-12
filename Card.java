@@ -7,4 +7,7 @@ public class Card {
     public void setVisibility(boolean v) {visible = v;}
 
     public boolean getVisibility() {return visible;}
+
+//    public int scoreMerchants() {
+//    }
 }
