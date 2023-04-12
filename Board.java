@@ -92,34 +92,6 @@ public class Board {
     public void setCheckedFalse(double[] crd){
         tiles.get(crd).setCheck(false);
     }
-    public int horizontaladj(Player p){
-        String col = p.getColor();
-        ArrayList<Double> temp = new ArrayList<Double>();
-        ArrayList<Integer> cnts = new ArrayList<Integer>();
-        for(int i = 0; i < p.getOccupiedTiles().size(); i++){
-            //get arraylist of all y coordinates of all settlements then get the number of settlements on each y coordinate then return the largest value
-            if(!contains(temp, p.getOccupiedTiles().get(i)[1])) {
-                temp.add(p.getOccupiedTiles().get(i)[1]);
-            }
-        }
-        for(int i = 0; i < temp.size(); i++){
-            double x = temp.get(i);
-            int y = 0;
-            for(int k = 0; k < p.getOccupiedTiles().size(); k++){
-                if(p.getOccupiedTiles().get(k)[1] == x){
-                    y++;
-                }
-            }
-            cnts.add(y);
-        }
-        int bigger = 0;
-        for(int i = 0; i < cnts.size(); i++){
-            if(bigger < cnts.get(i)){
-                bigger = cnts.get(i);
-            }
-        }
-        return bigger;
-    }
     public int scoreFishermen(Player p) {
         int cnt = 0;
         for(int i = 0; i < p.getOccupiedTiles().size(); i++){
@@ -200,12 +172,125 @@ public class Board {
         }
     }
     public int scoreMerchants() {}
-    public int scoreDiscoverers() {}
-    public int scoreKnights() {}
+    public int scoreDiscoverers(Player p) {
+        ArrayList<Double> temp = new ArrayList<Double>();
+        for(int i = 0; i < p.getOccupiedTiles().size(); i++){
+            //get arraylist of all y coordinates of all settlements then get the number of settlements on each y coordinate then return the largest value
+            if(!contains(temp, p.getOccupiedTiles().get(i)[1])) {
+                temp.add(p.getOccupiedTiles().get(i)[1]);
+            }
+        }
+        return temp.size();
+    }
+    public int scoreKnights(Player p) {
+        ArrayList<Double> temp = new ArrayList<Double>();
+        ArrayList<Integer> cnts = new ArrayList<Integer>();
+        for(int i = 0; i < p.getOccupiedTiles().size(); i++){
+            //get arraylist of all y coordinates of all settlements then get the number of settlements on each y coordinate then return the largest value
+            if(!contains(temp, p.getOccupiedTiles().get(i)[1])) {
+                temp.add(p.getOccupiedTiles().get(i)[1]);
+            }
+        }
+        for(int i = 0; i < temp.size(); i++){
+            double x = temp.get(i);
+            int y = 0;
+            for(int k = 0; k < p.getOccupiedTiles().size(); k++){
+                if(p.getOccupiedTiles().get(k)[1] == x){
+                    y++;
+                }
+            }
+            cnts.add(y);
+        }
+        int bigger = 0;
+        for(int i = 0; i < cnts.size(); i++){
+            if(bigger < cnts.get(i)){
+                bigger = cnts.get(i);
+            }
+        }
+        return bigger*2;
+    }
     public int scoreHermits() {}
     public int scoreLords() {}
     public int scoreCitizens() {}
-    public int scoreFarmers() {}
+    public int scoreFarmers(Player p) {
+        //2nd - [0-9] both
+        //1st - [10-19]x [0-9]y
+        //3rd - [0-9]x [10-19]y
+        //4th - [10-19] both
+        boolean one = false;
+        boolean two = false;
+        boolean three = false;
+        boolean four = false;
+        for(int i = 0; i < p.getOccupiedTiles().size(); i++){
+            if(p.getOccupiedTiles().get(i)[0] >= 10 && p.getOccupiedTiles().get(i)[0] <= 19 ) {
+                if(p.getOccupiedTiles().get(i)[1] <= 9) {
+                    one = true;
+                }
+            }
+            if(p.getOccupiedTiles().get(i)[0] <= 9 && p.getOccupiedTiles().get(i)[1] <= 9 ) {
+                two = true;
+            }
+            if(p.getOccupiedTiles().get(i)[1] >= 10 && p.getOccupiedTiles().get(i)[1] <= 19 ) {
+                if(p.getOccupiedTiles().get(i)[0] <= 9) {
+                    three = true;
+                }
+            }
+            if(p.getOccupiedTiles().get(i)[0] >= 10 && p.getOccupiedTiles().get(i)[0] <= 19 ) {
+                if(p.getOccupiedTiles().get(i)[1] >= 10 && p.getOccupiedTiles().get(i)[1] <= 19 ) {
+                    four = true;
+                }
+            }
+        }
+        if(!one){
+            return 0;
+        }
+        if(!two){
+            return 0;
+        }
+        if(!three){
+            return 0;
+        }
+        if(!four){
+            return 0;
+        }
+        ArrayList<Integer> counts = new ArrayList<Integer>();
+        int fr = 0;
+        int sc = 0;
+        int th = 0;
+        int fo = 0;
+        for(int i = 0; i < p.getOccupiedTiles().size(); i++){
+            if(p.getOccupiedTiles().get(i)[0] >= 10 && p.getOccupiedTiles().get(i)[0] <= 19 ) {
+                if(p.getOccupiedTiles().get(i)[1] <= 9) {
+                    fr++;
+                }
+            }
+            if(p.getOccupiedTiles().get(i)[0] <= 9 && p.getOccupiedTiles().get(i)[1] <= 9 ) {
+                sc++;
+            }
+            if(p.getOccupiedTiles().get(i)[1] >= 10 && p.getOccupiedTiles().get(i)[1] <= 19 ) {
+                if(p.getOccupiedTiles().get(i)[0] <= 9) {
+                    th++;
+                }
+            }
+            if(p.getOccupiedTiles().get(i)[0] >= 10 && p.getOccupiedTiles().get(i)[0] <= 19 ) {
+                if(p.getOccupiedTiles().get(i)[1] >= 10 && p.getOccupiedTiles().get(i)[1] <= 19 ) {
+                    fo++;
+                }
+            }
+        }
+        counts.add(fo);
+        counts.add(th);
+        counts.add(sc);
+        counts.add(fr);
+        int smaller = 10000;
+        for(int i = 0; i < counts.size(); i++){
+            if(counts.get(i) < smaller){
+                smaller = counts.get(i);
+            }
+        }
+        return smaller*3;
+
+    }
     public ArrayList<HexTile> findValidPlacements() {}
     public HashMap<double[], HexTile> getBoard(){
         return tiles;

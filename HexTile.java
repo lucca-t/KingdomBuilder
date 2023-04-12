@@ -5,7 +5,7 @@ public class HexTile {
     private boolean checked;
     private Player occupant;
 
-    public HexTile(String t, double[] coord) {
+    public HexTile(String t) {
         type = t;
         edge = false;
         occupant = null;
