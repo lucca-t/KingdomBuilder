@@ -19,6 +19,9 @@ public class Player{
     public void setScore(int pnt){
         points = pnt;
     }
+    public void addPoints(int pnt) {
+        points = points + pnt;
+    }
     public int getScore(){
         return points;
     }
