@@ -152,9 +152,23 @@ public class KingdomBuilderMain {
     }
     public void scorePlayers(){
         //using the board object, pass in each player to score as an argument
-        for (int i = 0; i < 4; i++) {
-            board.score(players.get(i));
+        for (int i = 0; i < pointCards.size(); i++) {
+            switch(pointCardsall.indexOf(pointCards.get(i))) {
+                case 0: board.scoreCitizens(players);
+                case 1: board.scoreDiscoverers(players);
+                case 2: board.scoreFarmers(players);
+                case 3: board.scoreFishermen(players);
+                case 4: board.scoreHermits(players);
+                case 5: board.scoreKnights(players);
+                case 6: board.scoreLords(players);
+                case 7: board.scoreMerchants(players);
+                case 8: board.scoreMiners(players);
+                case 9: board.scoreWorkers(players);
+            }
         }
+//        for (int i = 0; i < 4; i++) {
+//            board.score(players.get(i));
+//        }
     }
     public ArrayList<Player> getPlayers(){
         return players;
