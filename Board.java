@@ -216,7 +216,73 @@ public class Board {
     }
     public int scoreHermits() {}
     public int scoreLords() {}
-    public int scoreCitizens() {}
+    public int scoreCitizens(ArrayList<Player> players) {
+        for(int p = 0; p < players.size(); p++) {
+            ArrayList<Integer> cluster = new ArrayList<>();
+            for(int i = 0; i < players.get(p).getOccupiedTiles().size(); i++){
+
+            }
+        }
+    }
+    public boolean hasAdjacent(double[] x, ArrayList<double[]> y) {
+        for (int i = 0; i < y.size(); i++) {
+            if (y.get(i)[0] + 1 == x[0] || y.get(i)[0] + 0.5 == x[0] || y.get(i)[0] - 1 == x[0] || y.get(i)[0] - 0.5 == x[0]) {
+                if (y.get(i)[1] + 1 == x[1] || y.get(i)[1] + 0.5 == x[1] || y.get(i)[1] - 1 == x[1] || y.get(i)[1] - 0.5 == x[1]) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    public ArrayList<double[]> getCluster(double[] x, Player p){
+        ArrayList<double[]> cluster = new ArrayList<>();
+        if(!hasAdjacent(x,p.getOccupiedTiles())){
+            cluster.add(x);
+            return cluster;
+        }
+        for(int i = 0; i <  findPlayerAdjacencies(x, p).size(); i++){
+            cluster.add(findPlayerAdjacencies(x, p).get(i));
+        }
+        boolean hasstuff = true;
+        while(hasstuff){
+            ArrayList<double[]> temp = cluster;
+            for(int i = 0; i < temp.size(); i++){
+                ArrayList<double[]> hi = findPlayerAdjacencies(temp.get(i), p);
+                if(hi.isEmpty()){
+                    hasstuff = false;
+                }
+                for(int k = 0; k < hi.size(); i++){
+                    temp.add(hi.get(k));
+                }
+            }
+            cluster = temp;
+        }
+        removeRepeats(cluster);
+
+    }
+    public ArrayList<double[]> findPlayerAdjacencies(double[] coord, Player p){
+        ArrayList<double[]> adjacent = findAdjacencies(coord);
+        ArrayList<double[]> playeradj = new ArrayList<>();
+        for(int i = 0; i < p.getOccupiedTiles().size(); i++){
+            for(int k = 0; k < adjacent.size(); k++){
+                if(p.getOccupiedTiles().get(i).equals(adjacent.get(k)) && tiles.get(p.getOccupiedTiles().get(i)).getCounted() == false){
+                    playeradj.add(p.getOccupiedTiles().get(i));
+                    tiles.get(p.getOccupiedTiles().get(i)).setCounted(true);
+                }
+            }
+        }
+        return playeradj;
+    }
+    public void removeRepeats(ArrayList<double[]> x){
+        for(int i = 0; i < x.size(); i++){
+            for(int k = 0; k < x.size(); i++){
+                if(x.get(i).equals(x.get(k))){
+                    x.remove(i);
+                }
+            }
+        }
+    }
+
     public void scoreFarmers(ArrayList<Player> players) {
         for (int p = 0; p < players.size(); p++) {
             //2nd - [0-9] both
