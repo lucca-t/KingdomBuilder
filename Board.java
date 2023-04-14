@@ -383,5 +383,8 @@ public class Board {
     public HashMap<double[], HexTile> getBoard(){
         return tiles;
     }
+    public HashMap<double[], HexTile> getTiles(){
+        return tiles;
+    }
 
 }
