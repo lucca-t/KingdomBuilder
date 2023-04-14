@@ -15,38 +15,67 @@ public class Board {
     Object[][] boards = {board1, board2, board3, board4};
     public Board(int b1, int b2, int b3, int b4) {
         int i;
-        int r = 0;
-        int c = 0;
-        for (i = 0; i < 100; i++) {
-            double[] coord = {r, c};
-            Object[] temp = boards[b1];
-            tiles.put(coord, new HexTile((String)(boards[b1][i])));
-            r++;
-            c++;
+        int y = 0;
+        int x = 0;
+        for (y = 0; y < 10; y++) {
+            for (x = 10; x < 20; x++) {
+                double[] coord = new double[2];
+                if (y%2 == 0) {
+                    coord[0] = y;
+                    coord[1] = x;
+                }
+                else {
+                    coord[0] = y;
+                    coord[1] = x + 0.5;
+                }
+                tiles.put(coord, new HexTile((String)(boards[b1][i])));
+                i++;
+            }
         }
-        r = 0;
-        c = 11;
-        for (i = 0; i < 100; i++) {
-            double[] coord = {r, c};
-            tiles.put(coord, new HexTile((String)(boards[b2][i])));
-            r++;
-            c++;
+        for (y = 0; y < 10; y++) {
+            for (x = 0; x < 10; x++) {
+                double[] coord = new double[2];
+                if (y%2 == 0) {
+                    coord[0] = y;
+                    coord[1] = x;
+                }
+                else {
+                    coord[0] = y;
+                    coord[1] = x + 0.5;
+                }
+                tiles.put(coord, new HexTile((String)(boards[b2][i])));
+                i++;
+            }
         }
-        r = 11;
-        c = 0;
-        for (i = 0; i < 100; i++) {
-            double[] coord = {r, c};
-            tiles.put(coord, new HexTile((String)(boards[b3][i])));
-            r++;
-            c++;
+        for (y = 10; y < 20; y++) {
+            for (x = 0; x < 10; x++) {
+                double[] coord = new double[2];
+                if (y%2 == 0) {
+                    coord[0] = y;
+                    coord[1] = x;
+                }
+                else {
+                    coord[0] = y;
+                    coord[1] = x + 0.5;
+                }
+                tiles.put(coord, new HexTile((String)(boards[b3][i])));
+                i++;
+            }
         }
-        r = 11;
-        c = 11;
-        for (i = 0; i < 100; i++) {
-            double[] coord = {r, c};
-            tiles.put(coord, new HexTile((String)(boards[b4][i])));
-            r++;
-            c++;
+        for (y = 10; y < 20; y++) {
+            for (x = 10; x < 20; x++) {
+                double[] coord = new double[2];
+                if (y%2 == 0) {
+                    coord[0] = y;
+                    coord[1] = x;
+                }
+                else {
+                    coord[0] = y;
+                    coord[1] = x + 0.5;
+                }
+                tiles.put(coord, new HexTile((String)(boards[b1][i])));
+                i++;
+            }
         }
     }
 
