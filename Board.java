@@ -66,21 +66,6 @@ public class Board {
         adjacent.add(bR);
         return adjacent;
     }
-
-    public void score(Player p) {
-        int temp = p.getScore();
-        temp += scoreFishermen(p);
-        temp += scoreMiners(p);
-        temp += scoreMerchants(p);
-        temp += scoreWorkers(p);
-        temp += scoreDiscoverers(p);
-        temp += scoreKnights(p);
-        temp += scoreHermits(p);
-        temp += scoreLords(p);
-        temp += scoreCitizens(p);
-        temp += scoreFarmers(p);
-        p.setScore(temp);
-    }
     public boolean contains(ArrayList<Double> x, double y){
         for(int i = 0; i < x.size(); i++){
             if(x.get(i) == y){
@@ -92,21 +77,24 @@ public class Board {
     public void setCheckedFalse(double[] crd){
         tiles.get(crd).setCheck(false);
     }
-    public int scoreFishermen(Player p) {
-        int cnt = 0;
-        for(int i = 0; i < p.getOccupiedTiles().size(); i++){
-            ArrayList<double[]> temp = findAdjacencies(p.getOccupiedTiles().get(i));
-            for(int k = 0; k < temp.size(); k++){
-                cnt+=scoreFishermen(temp.get(k));
+    public void scoreFishermen(ArrayList<Player> players) {
+        for(int p = 0; p < players.size(); p++) {
+            int cnt = 0;
+            for(int i = 0; i < players.get(p).getOccupiedTiles().size(); i++){
+                ArrayList<double[]> temp = findAdjacencies(players.get(p).getOccupiedTiles().get(i));
+                for(int k = 0; k < temp.size(); k++){
+                    cnt+=scoreFishermen(temp.get(k));
+                }
             }
-        }
-        for(int i = 0; i < p.getOccupiedTiles().size(); i++){
-            ArrayList<double[]> temp = findAdjacencies(p.getOccupiedTiles().get(i));
-            for(int k = 0; k < temp.size(); k++){
-                setCheckedFalse(temp.get(k));
+            for(int i = 0; i < players.get(p).getOccupiedTiles().size(); i++){
+                ArrayList<double[]> temp = findAdjacencies(players.get(p).getOccupiedTiles().get(i));
+                for(int k = 0; k < temp.size(); k++){
+                    setCheckedFalse(temp.get(k));
+                }
             }
+            players.get(p).addPoints(cnt);
         }
-        return cnt;
+
     }
     public int scoreFishermen(double[] crd){
         if(tiles.get(crd).getType().equals("w") && tiles.get(crd).getChecked() == false){
@@ -117,21 +105,24 @@ public class Board {
             return 0;
         }
     }
-    public int scoreMiners(Player p) {
-        int cnt = 0;
-        for(int i = 0; i < p.getOccupiedTiles().size(); i++){
-            ArrayList<double[]> temp = findAdjacencies(p.getOccupiedTiles().get(i));
-            for(int k = 0; k < temp.size(); k++){
-                cnt+=scoreMiners(temp.get(k));
+    public void scoreMiners(ArrayList<Player> players) {
+        for(int p = 0; p < players.size(); p++) {
+            int cnt = 0;
+            for(int i = 0; i < players.get(p).getOccupiedTiles().size(); i++){
+                ArrayList<double[]> temp = findAdjacencies(players.get(p).getOccupiedTiles().get(i));
+                for(int k = 0; k < temp.size(); k++){
+                    cnt+=scoreMiners(temp.get(k));
+                }
             }
-        }
-        for(int i = 0; i < p.getOccupiedTiles().size(); i++){
-            ArrayList<double[]> temp = findAdjacencies(p.getOccupiedTiles().get(i));
-            for(int k = 0; k < temp.size(); k++){
-                setCheckedFalse(temp.get(k));
+            for(int i = 0; i < players.get(p).getOccupiedTiles().size(); i++){
+                ArrayList<double[]> temp = findAdjacencies(players.get(p).getOccupiedTiles().get(i));
+                for(int k = 0; k < temp.size(); k++){
+                    setCheckedFalse(temp.get(k));
+                }
             }
+            players.get(p).addPoints(cnt);
         }
-        return cnt;
+
     }
     public int scoreMiners(double[] crd){
         if(tiles.get(crd).getType().equals("m") && tiles.get(crd).getChecked() == false){
@@ -142,21 +133,24 @@ public class Board {
             return 0;
         }
     }
-    public int scoreWorkers(Player p) {
-        int cnt = 0;
-        for(int i = 0; i < p.getOccupiedTiles().size(); i++){
-            ArrayList<double[]> temp = findAdjacencies(p.getOccupiedTiles().get(i));
-            for(int k = 0; k < temp.size(); k++){
-                cnt+=scoreWorkers(temp.get(k));
+    public void scoreWorkers(ArrayList<Player> players) {
+        for(int p = 0; p < players.size(); p++) {
+            int cnt = 0;
+            for(int i = 0; i < players.get(p).getOccupiedTiles().size(); i++){
+                ArrayList<double[]> temp = findAdjacencies(players.get(p).getOccupiedTiles().get(i));
+                for(int k = 0; k < temp.size(); k++){
+                    cnt+=scoreWorkers(temp.get(k));
+                }
             }
-        }
-        for(int i = 0; i < p.getOccupiedTiles().size(); i++){
-            ArrayList<double[]> temp = findAdjacencies(p.getOccupiedTiles().get(i));
-            for(int k = 0; k < temp.size(); k++){
-                setCheckedFalse(temp.get(k));
+            for(int i = 0; i < players.get(p).getOccupiedTiles().size(); i++){
+                ArrayList<double[]> temp = findAdjacencies(players.get(p).getOccupiedTiles().get(i));
+                for(int k = 0; k < temp.size(); k++){
+                    setCheckedFalse(temp.get(k));
+                }
             }
+            players.get(p).addPoints(cnt);
         }
-        return cnt;
+
     }
     public int scoreWorkers(double[] crd){
         if(tiles.get(crd).getType().equals("castle") && tiles.get(crd).getChecked() == false){
@@ -171,7 +165,7 @@ public class Board {
             return 0;
         }
     }
-    public int scoreMerchants() {}
+    public int scoreMerchants(ArrayList<Player> players) {}
     public void scoreDiscoverers(ArrayList<Player> players) {
         for (int p = 0; p < players.size(); p++) {
             ArrayList<Double> temp = new ArrayList<Double>();
@@ -214,14 +208,34 @@ public class Board {
         }
 
     }
-    public int scoreHermits() {}
-    public int scoreLords() {}
-    public int scoreCitizens(ArrayList<Player> players) {
+    public void scoreHermits(ArrayList<Player> players) {
         for(int p = 0; p < players.size(); p++) {
-            ArrayList<Integer> cluster = new ArrayList<>();
-            for(int i = 0; i < players.get(p).getOccupiedTiles().size(); i++){
-
+            ArrayList<Integer> clustersize = new ArrayList<>();
+            for(int i = 0; i < players.get(p).getOccupiedTiles().size(); i++) {
+                ArrayList<double[]> eminem = getCluster(players.get(p).getOccupiedTiles().get(i), players.get(p));
+                clustersize.add(eminem.size());
             }
+            players.get(p).addPoints(clustersize.size());
+        }
+    }
+    public int scoreLords(ArrayList<Player> players) {}
+    public void scoreCitizens(ArrayList<Player> players) {
+        for(int p = 0; p < players.size(); p++) {
+            ArrayList<Integer> clustersize = new ArrayList<>();
+            for(int i = 0; i < players.get(p).getOccupiedTiles().size(); i++){
+                ArrayList<double[]> eminem = getCluster(players.get(p).getOccupiedTiles().get(i), players.get(p));
+                clustersize.add(eminem.size());
+            }
+            int big = 0;
+            for(int i = 0; i < clustersize.size(); i++){
+                if(clustersize.get(i) > big){
+                    big = clustersize.get(i);
+                }
+            }
+            if(big%2== 1){
+                big -= 1;
+            }
+            players.get(p).addPoints(big/2);
         }
     }
     public boolean hasAdjacent(double[] x, ArrayList<double[]> y) {
@@ -247,17 +261,18 @@ public class Board {
         while(hasstuff){
             ArrayList<double[]> temp = cluster;
             for(int i = 0; i < temp.size(); i++){
-                ArrayList<double[]> hi = findPlayerAdjacencies(temp.get(i), p);
-                if(hi.isEmpty()){
+                ArrayList<double[]> spongebob = findPlayerAdjacencies(temp.get(i), p);
+                if(spongebob.isEmpty()){
                     hasstuff = false;
                 }
-                for(int k = 0; k < hi.size(); i++){
-                    temp.add(hi.get(k));
+                for(int k = 0; k < spongebob.size(); i++){
+                    temp.add(spongebob.get(k));
                 }
             }
             cluster = temp;
         }
         removeRepeats(cluster);
+        return cluster;
 
     }
     public ArrayList<double[]> findPlayerAdjacencies(double[] coord, Player p){
