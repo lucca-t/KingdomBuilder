@@ -173,4 +173,9 @@ public class KingdomBuilderMain {
     public ArrayList<Player> getPlayers(){
         return players;
     }
+
+    //tester methods
+    public Board getBoard() {
+        return board;
+    }
 }
