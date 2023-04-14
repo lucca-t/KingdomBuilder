@@ -194,7 +194,7 @@ public class Board {
             return 0;
         }
     }
-    public int scoreMerchants(ArrayList<Player> players) {}
+    public int scoreMerchants(ArrayList<Player> players) { return 0;}
     public void scoreDiscoverers(ArrayList<Player> players) {
         for (int p = 0; p < players.size(); p++) {
             ArrayList<Double> temp = new ArrayList<Double>();
@@ -247,7 +247,7 @@ public class Board {
             players.get(p).addPoints(clustersize.size());
         }
     }
-    public int scoreLords(ArrayList<Player> players) {}
+    public int scoreLords(ArrayList<Player> players) {return 0;}
     public void scoreCitizens(ArrayList<Player> players) {
         for(int p = 0; p < players.size(); p++) {
             ArrayList<Integer> clustersize = new ArrayList<>();
