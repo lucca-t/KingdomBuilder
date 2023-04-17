@@ -32,4 +32,8 @@ public class HexTile {
         return counted;
     }
 
+    public String toString() {
+        return type;
+    }
+
 }
