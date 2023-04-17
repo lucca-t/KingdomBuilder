@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Arrays;
@@ -208,7 +209,42 @@ public class Board {
             return 0;
         }
     }
-    public int scoreMerchants(ArrayList<Player> players) { return 0;}
+    public void scoreMerchants(ArrayList<Player> players) {
+        for(int p = 0; p < players.size(); p++){
+            ArrayList<double[]>  bulbasaur = players.get(p).getOccupiedTiles();
+            ArrayList<ArrayList<double[]>> squirtle = new ArrayList<>();
+            for(int i = 0; i < bulbasaur.size(); i++){
+                squirtle.add(getCluster(bulbasaur.get(i), players.get(p)));
+            }
+            removeRepeatsdos(squirtle);
+            ArrayList<Integer> pikachu = new ArrayList<>();
+            for(int i = 0; i < squirtle.size(); i++){
+                int cnt = 0;
+                for(int k = 0; k < squirtle.get(i).size(); k++){
+                    ArrayList<double[]> charmander = findAdjacencies(squirtle.get(i).get(k));
+                    for(int j = 0; j < charmander.size(); j++){
+                        if(!tiles.get(j).getTouched() && tiles.get(j).getType().length() > 1){
+                            cnt++;
+                            tiles.get(j).setTouched(true);
+                        }
+                    }
+                }
+                pikachu.add(cnt);
+            }
+            int x = 0;
+            for(int i = 0; i < pikachu.size(); i++){
+                if(pikachu.get(i) > x){
+                    x = pikachu.get(i);
+                }
+            }
+            if(x < 2){
+                players.get(p).addPoints(0);
+            }
+            else{
+                players.get(p).addPoints(4*x);
+            }
+        }
+    }
     public void scoreDiscoverers(ArrayList<Player> players) {
         for (int p = 0; p < players.size(); p++) {
             ArrayList<Double> temp = new ArrayList<Double>();
@@ -332,6 +368,15 @@ public class Board {
         return playeradj;
     }
     public void removeRepeats(ArrayList<double[]> x){
+        for(int i = 0; i < x.size(); i++){
+            for(int k = 0; k < x.size(); i++){
+                if(x.get(i).equals(x.get(k))){
+                    x.remove(i);
+                }
+            }
+        }
+    }
+    public void removeRepeatsdos(ArrayList<ArrayList<double[]>> x){
         for(int i = 0; i < x.size(); i++){
             for(int k = 0; k < x.size(); i++){
                 if(x.get(i).equals(x.get(k))){

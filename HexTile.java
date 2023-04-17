@@ -2,7 +2,7 @@ public class HexTile {
     private String type;
 
     private boolean edge;
-    private boolean checked, counted;
+    private boolean checked, counted, touched;
     private Player occupant;
 
     public HexTile(String t) {
@@ -11,6 +11,7 @@ public class HexTile {
         occupant = null;
         checked = false;
         counted = false;
+        touched = false;
     }
     public void setOccupancy(Player p) {occupant = p;}
 
@@ -25,11 +26,18 @@ public class HexTile {
     public void setCounted(boolean c) {
         counted = c;
     }
+    public void setTouched(boolean c) {
+        counted = c;
+    }
+
     public boolean getChecked() {
     return checked;
     }
     public boolean getCounted() {
         return counted;
+    }
+    public boolean getTouched() {
+        return touched;
     }
 
 }
