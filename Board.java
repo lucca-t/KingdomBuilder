@@ -5,16 +5,26 @@ public class Board {
 
     //desert: d, canyon: c, water: w, forest: s, flowers: f, grass: g, mountains: m, castle: castle
     private int location;
+    private ArrayList<Action> actions;
     private HashMap<double[], HexTile> tiles;
 
 
-    Object[] board1 = {"d", "d", "c", "w", "w", "s", "s", "s", "g", "g", "d", "castle", "c", "w", "s", "s", "s", new Action(1, "Barn", false), "g", "g", "c", "c", "c", "f", "f", "f", "s", "c", "f", "f", "c", "c", "f", "f", "w", "d", "d", "c", "c", "f", "c", "g", "g", "w", "f", "f", "d", "d", "c", "c", "g", "g", new Action(1, "Barn", false), "f", "w", "f", "w", "d", "d", "c", "g", "g", "g", "s", "f", "f", "w", "w", "d", "d", "g", "g", "s", "s", "m", "w", "w", "w", "d", "w", "g", "m", "s", "s", "w", "w", "w", "w", "w", "w", "s", "s", "s", "w", "w", "w", "w", "w", "w", "w"};
-    Object[] board2 = {"d", "d", "c", "w", "w", "s", "s", "g", "g", "g", "d", "c", "w", "f", "f", "s", "s", "s", "g", "g", "d", "d", "w", "f", "f", "s", "s", new Action(2, "Oasis", false), "f", "g", "w", "w", "w", "f", "g", "s", "f", "f", "f", "f", "w", "w", "w", "w", "g", "g", "g", "g", "f", "f", "w", "s", "s", "w", "g", "g", "c", "c", "d", "c", "w", "s", "c", "s", "w", "g", "c", "c", "d", "c", "w", "castle", "c", "f", "w", new Action(2, "Oasis", false), "d", "d", "c", "w", "w", "w", "c", "f", "w", "w", "w", "d", "d", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w"};
-    Object[] board3 = {"g", "g", "s", "s", "s", "w", "g", "s", "s", "f", "g", "f", "s", "s", "w", "g", "s", "s", "f", "f", "g", "f", "f", "s", "w", "g", "g", "f", "f", "f", "f", "f", "s", "s", "w", "g", "m", "f", "d", "c", "c", "f", "castle", "s", "w", "g", "d", "d", "d", "d", "c", "c", "s", "w", "g", "g", "m", "m", "d", "d", "c", "c", "w", "w", "w", "g", "d", "d", "d", "c", "w", "w", "g", "g", "w", "w", new Action(2, "Harbor", false), "c", "m", "c", "w", "d", "castle", "g", "w", "m", "w", "c", "c", "c", "w", "d", "d", "w", "w", "w", "w", "c", "c", "c"};
-    Object[] board4 = {"g", "g", "g", "s", "s", "w", "g", "s", "s", "g", "g", "g", "castle", "s", "w", "g", "s", "s", "s", "g", "f", "f", "g", "s", "s", "w", "g", "g", "s", "f", "f", "c", "g", "s", "w", "f", new Action(2, "Oracle", false), "s", "s", "f", "f", "f", "c", "c", "w", "f", "f", "w", "w", "m", "m", "c", "g", "g", "w", "w", "w", "d", "d", "c", "c", "c", "m", "g", "f", "f", "f", "d", "d", "c", "c", "castle", "d", "m", "d", "f", "f", "c", "c", "w", "w", "w", "d", "d", "d", "d", "m", "c", "c", "w", "w", "w", "w", "d", "d", "d", "d", "d", "c"};
-    Object[][] boards = {board1, board2, board3, board4};
+    String[] board1 = {"d", "d", "c", "w", "w", "s", "s", "s", "g", "g", "d", "castle", "c", "w", "s", "s", "s", "Barn", "g", "g", "c", "c", "c", "f", "f", "f", "s", "c", "f", "f", "c", "c", "f", "f", "w", "d", "d", "c", "c", "f", "c", "g", "g", "w", "f", "f", "d", "d", "c", "c", "g", "g", "Barn", "f", "w", "f", "w", "d", "d", "c", "g", "g", "g", "s", "f", "f", "w", "w", "d", "d", "g", "g", "s", "s", "m", "w", "w", "w", "d", "w", "g", "m", "s", "s", "w", "w", "w", "w", "w", "w", "s", "s", "s", "w", "w", "w", "w", "w", "w", "w"};
+    String[] board2 = {"d", "d", "c", "w", "w", "s", "s", "g", "g", "g", "d", "c", "w", "f", "f", "s", "s", "s", "g", "g", "d", "d", "w", "f", "f", "s", "s", "Oasis", "f", "g", "w", "w", "w", "f", "g", "s", "f", "f", "f", "f", "w", "w", "w", "w", "g", "g", "g", "g", "f", "f", "w", "s", "s", "w", "g", "g", "c", "c", "d", "c", "w", "s", "c", "s", "w", "g", "c", "c", "d", "c", "w", "castle", "c", "f", "w", "Oasis", "d", "d", "c", "w", "w", "w", "c", "f", "w", "w", "w", "d", "d", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w"};
+    String[] board3 = {"g", "g", "s", "s", "s", "w", "g", "s", "s", "f", "g", "f", "s", "s", "w", "g", "s", "s", "f", "f", "g", "f", "f", "s", "w", "g", "g", "f", "f", "f", "f", "f", "s", "s", "w", "g", "m", "f", "d", "c", "c", "f", "castle", "s", "w", "g", "d", "d", "d", "d", "c", "c", "s", "w", "g", "g", "m", "m", "d", "d", "c", "c", "w", "w", "w", "g", "d", "d", "d", "c", "w", "w", "g", "g", "w", "w", "Harbor", "c", "m", "c", "w", "d", "castle", "g", "w", "m", "w", "c", "c", "c", "w", "d", "d", "w", "w", "w", "w", "c", "c", "c"};
+    //board3 not built correctly
+    String[] board4 = {"g", "g", "g", "s", "s", "w", "g", "s", "s", "g", "g", "g", "castle", "s", "w", "g", "s", "s", "s", "g", "f", "f", "g", "s", "s", "w", "g", "g", "s", "f", "f", "c", "g", "s", "w", "f", "Oracle", "s", "s", "f", "f", "f", "c", "c", "w", "f", "f", "w", "w", "m", "m", "c", "g", "g", "w", "w", "w", "d", "d", "c", "c", "c", "m", "g", "f", "f", "f", "d", "d", "c", "c", "castle", "d", "m", "d", "f", "f", "c", "c", "w", "w", "w", "d", "d", "d", "d", "m", "c", "c", "w", "w", "w", "w", "d", "d", "d", "d", "d", "c"};
+    String[][] boards = {board1, board2, board3, board4};
     public Board(int b1, int b2, int b3, int b4) {
-        int i;
+        actions = new ArrayList<Action>();
+        actions.add(new Action(1, "Barn", false));
+        actions.add(new Action(1, "Barn", false));
+        actions.add(new Action(2, "Oasis", false));
+        actions.add(new Action(2, "Oasis", false));
+        actions.add(new Action(2, "Harbor", false));
+        actions.add(new Action(2, "Oracle", false));
+        tiles = new HashMap<double[], HexTile>();
+        int i = 0;
         int y = 0;
         int x = 0;
         for (y = 0; y < 10; y++) {
@@ -28,10 +38,12 @@ public class Board {
                     coord[0] = y;
                     coord[1] = x + 0.5;
                 }
-                tiles.put(coord, new HexTile((String)(boards[b1][i])));
+//                if (boards[b1][i])
+                tiles.put(coord, new HexTile((boards[b1][i])));
                 i++;
             }
         }
+        i = 0;
         for (y = 0; y < 10; y++) {
             for (x = 0; x < 10; x++) {
                 double[] coord = new double[2];
@@ -43,10 +55,11 @@ public class Board {
                     coord[0] = y;
                     coord[1] = x + 0.5;
                 }
-                tiles.put(coord, new HexTile((String)(boards[b2][i])));
+                tiles.put(coord, new HexTile((boards[b2][i])));
                 i++;
             }
         }
+        i = 0;
         for (y = 10; y < 20; y++) {
             for (x = 0; x < 10; x++) {
                 double[] coord = new double[2];
@@ -58,10 +71,11 @@ public class Board {
                     coord[0] = y;
                     coord[1] = x + 0.5;
                 }
-                tiles.put(coord, new HexTile((String)(boards[b3][i])));
+                tiles.put(coord, new HexTile((boards[b3][i])));
                 i++;
             }
         }
+        i = 0;
         for (y = 10; y < 20; y++) {
             for (x = 10; x < 20; x++) {
                 double[] coord = new double[2];
@@ -73,7 +87,7 @@ public class Board {
                     coord[0] = y;
                     coord[1] = x + 0.5;
                 }
-                tiles.put(coord, new HexTile((String)(boards[b1][i])));
+                tiles.put(coord, new HexTile((boards[b1][i])));
                 i++;
             }
         }
@@ -408,7 +422,7 @@ public class Board {
         }
 
     }
-    public ArrayList<HexTile> findValidPlacements() {}
+//    public ArrayList<HexTile> findValidPlacements() {}
     public HashMap<double[], HexTile> getBoard(){
         return tiles;
     }
