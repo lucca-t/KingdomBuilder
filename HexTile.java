@@ -40,4 +40,8 @@ public class HexTile {
         return touched;
     }
 
+    public String toString() {
+        return type;
+    }
+
 }
