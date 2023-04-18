@@ -28,4 +28,10 @@ public class Action {
     public boolean getUsed(){
         return used;
     }
+    public boolean equals(Action a) {
+        if (a.getType() == this.type) {
+            return true;
+        }
+        return false;
+    }
 }

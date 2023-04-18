@@ -100,7 +100,9 @@ public class KingdomBuilderMain {
     }
 
     public void setSettlementCord(ArrayList<double[]> sC) {
-        settlementCords = sC;
+        if (checkValidPlacement(sC)) {
+            settlementCords = sC;
+        }
     }
 
 //    public void runGame() {
@@ -190,6 +192,13 @@ public class KingdomBuilderMain {
     //tester methods
     public Board getBoard() {
         return board;
+    }
+
+    public boolean checkValidPlacement(ArrayList<double[]> sC) {
+        ArrayList<Action> actions = players.get(turn).getActions();
+        //if(sC.get(0).isAdjacent(sC.get(1)) && sc.get(1).isAdjacent(sC.get(2)) && sC.get(0).isAdjacent(sC.get(2))) {return true}
+        //iff (sC.get(0).get
+        return false;
     }
 
 }
