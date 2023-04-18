@@ -295,7 +295,39 @@ public class Board {
             players.get(p).addPoints(clustersize.size());
         }
     }
-    public int scoreLords(ArrayList<Player> players) {return 0;}
+    public ArrayList<Integer> scoreLordsHelper2(ArrayList<Player> players, int quadrant){
+        Player first = new Player("hello");
+        Player sec = new Player("hello");
+        Player third = new Player("hello");
+        Player fourth = new Player("hello");
+        ArrayList<ArrayList<Integer>> comp = new ArrayList<>();
+        ArrayList<Integer> p1 = getNumSettle(players.get(0));
+        ArrayList<Integer> p2 = getNumSettle(players.get(1));
+        ArrayList<Integer> p3 = getNumSettle(players.get(2));
+        ArrayList<Integer> p4 = getNumSettle(players.get(3));
+        ArrayList<Integer> complete = new ArrayList<>();
+        int big = 0;
+        for(int i = 0; i < comp.size(); i++){
+            if(comp.get(i).get(0) > big){
+                big = comp.get(i).get(0);
+            }
+        }
+        if(big == comp.get(0).get(0)){
+            first = players.get(0);
+        }
+    }
+    public int scoreLordsHelper(Player p){
+
+    }
+    public void scoreLords(ArrayList<Player> players){
+        ArrayList<Integer> p1 = getNumSettle(players.get(0));
+        ArrayList<Integer> p2 = getNumSettle(players.get(1));
+        ArrayList<Integer> p3 = getNumSettle(players.get(2));
+        ArrayList<Integer> p4 = getNumSettle(players.get(3));
+        for(int p = 0; p < players.size(); p++){
+
+        }
+    }
     public void scoreCitizens(ArrayList<Player> players) {
         for(int p = 0; p < players.size(); p++) {
             ArrayList<Integer> clustersize = new ArrayList<>();
@@ -314,6 +346,38 @@ public class Board {
             }
             players.get(p).addPoints(big/2);
         }
+    }
+    public ArrayList<Integer> getNumSettle(Player p){
+        ArrayList<Integer> temp = new ArrayList<>();
+        int docbrown = 0;
+        int mator = 0;
+        int shrek = 0;
+        int mcqueen = 0;
+        for(int i = 0; i < p.getOccupiedTiles().size(); i++){
+            if(p.getOccupiedTiles().get(i)[0] >= 10 && p.getOccupiedTiles().get(i)[0] <= 19 ) {
+                if(p.getOccupiedTiles().get(i)[1] <= 9) {
+                    docbrown++;
+                }
+            }
+            if(p.getOccupiedTiles().get(i)[1] >= 10 && p.getOccupiedTiles().get(i)[1] <= 19 ) {
+                if(p.getOccupiedTiles().get(i)[0] <= 9) {
+                    shrek++;
+                }
+            }
+            if(p.getOccupiedTiles().get(i)[0] <= 9 && p.getOccupiedTiles().get(i)[1] <= 9){
+                mator++;
+            }
+            if(p.getOccupiedTiles().get(i)[1] >= 10 && p.getOccupiedTiles().get(i)[1] <= 19 ) {
+                if(p.getOccupiedTiles().get(i)[0] >= 10 && p.getOccupiedTiles().get(i)[0] <= 19) {
+                    mcqueen++;
+                }
+            }
+        }
+        temp.add(docbrown);
+        temp.add(mator);
+        temp.add(shrek);
+        temp.add(mcqueen);
+        return temp;
     }
     public boolean hasAdjacent(double[] x, ArrayList<double[]> y) {
         for (int i = 0; i < y.size(); i++) {
@@ -386,10 +450,7 @@ public class Board {
 
     public void scoreFarmers(ArrayList<Player> players) {
         for (int p = 0; p < players.size(); p++) {
-            //2nd - [0-9] both
-            //1st - [10-19]x [0-9]y
-            //3rd - [0-9]x [10-19]y
-            //4th - [10-19] both
+
             boolean one = false;
             boolean two = false;
             boolean three = false;
@@ -426,35 +487,7 @@ public class Board {
             if(!four){
                 break;
             }
-            ArrayList<Integer> counts = new ArrayList<Integer>();
-            int fr = 0;
-            int sc = 0;
-            int th = 0;
-            int fo = 0;
-            for(int i = 0; i < players.get(p).getOccupiedTiles().size(); i++){
-                if(players.get(p).getOccupiedTiles().get(i)[0] >= 10 && players.get(p).getOccupiedTiles().get(i)[0] <= 19 ) {
-                    if(players.get(p).getOccupiedTiles().get(i)[1] <= 9) {
-                        fr++;
-                    }
-                }
-                if(players.get(p).getOccupiedTiles().get(i)[0] <= 9 && players.get(p).getOccupiedTiles().get(i)[1] <= 9 ) {
-                    sc++;
-                }
-                if(players.get(p).getOccupiedTiles().get(i)[1] >= 10 && players.get(p).getOccupiedTiles().get(i)[1] <= 19 ) {
-                    if(players.get(p).getOccupiedTiles().get(i)[0] <= 9) {
-                        th++;
-                    }
-                }
-                if(players.get(p).getOccupiedTiles().get(i)[0] >= 10 && players.get(p).getOccupiedTiles().get(i)[0] <= 19 ) {
-                    if(players.get(p).getOccupiedTiles().get(i)[1] >= 10 && players.get(p).getOccupiedTiles().get(i)[1] <= 19 ) {
-                        fo++;
-                    }
-                }
-            }
-            counts.add(fo);
-            counts.add(th);
-            counts.add(sc);
-            counts.add(fr);
+            ArrayList<Integer> counts = getNumSettle(players.get(p));
             int smaller = 10000;
             for(int i = 0; i < counts.size(); i++){
                 if(counts.get(i) < smaller){
