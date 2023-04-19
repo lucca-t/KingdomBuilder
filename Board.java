@@ -247,7 +247,6 @@ public class Board {
         for (int p = 0; p < players.size(); p++) {
             ArrayList<Double> temp = new ArrayList<Double>();
             for(int i = 0; i < players.get(p).getOccupiedTiles().size(); i++){
-                //get arraylist of all y coordinates of all settlements then get the number of settlements on each y coordinate then return the largest value
                 if(!contains(temp, players.get(p).getOccupiedTiles().get(i)[1])) {
                     temp.add(players.get(p).getOccupiedTiles().get(i)[1]);
                 }
@@ -295,7 +294,7 @@ public class Board {
             players.get(p).addPoints(clustersize.size());
         }
     }
-    public int scoreLordsHelper2(ArrayList<Player> players, int player){
+    public int scoreLordsHelper(ArrayList<Player> players, int player){
         int ps1 = 0;
         int ps2 = 0;
         int ps3 = 0;
@@ -459,19 +458,27 @@ public class Board {
         if(big4 == comp.get(3).get(3)){
             ps4 += 12;
         }
-
-
-    }
-    public int scoreLordsHelper(Player p){
-
+        if(player == 1){
+            return ps1;
+        }
+        if(player == 2){
+            return ps2;
+        }
+        if(player == 3){
+            return ps3;
+        }
+        if(player == 4){
+            return ps4;
+        }
+        else{
+            return 0;
+        }
     }
     public void scoreLords(ArrayList<Player> players){
-        ArrayList<Integer> p1 = getNumSettle(players.get(0));
-        ArrayList<Integer> p2 = getNumSettle(players.get(1));
-        ArrayList<Integer> p3 = getNumSettle(players.get(2));
-        ArrayList<Integer> p4 = getNumSettle(players.get(3));
-        for(int p = 0; p < players.size(); p++){
-
+        int i = 0;
+        for(int p = 1; p < 4; p++){
+            players.get(i).addPoints(scoreLordsHelper(players, p));
+            i++;
         }
     }
     public void scoreCitizens(ArrayList<Player> players) {

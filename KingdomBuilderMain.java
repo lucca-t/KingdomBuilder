@@ -196,15 +196,27 @@ public class KingdomBuilderMain {
     }
 
     public boolean checkValidPlacement(ArrayList<double[]> sC) {
+
+        /** time consuming plans: make a list of all tiles of a certian terrain type
+         * make a list of all empty tiles adjacent to settled tiles, use retainAll to find intersection
+         * add to list of empty tiles each time a settlement is placed
+         * delete from terrain list
+         * check if contains recognizes identical strings
+         * **/
+
         Action tempHarbor = new Action(5, "Harbor", false);
         ArrayList<Action> actions = players.get(turn).getActions();
         ArrayList<String> actionStr = new ArrayList<String>();
         ArrayList<String> terrainTypes = new ArrayList<String>();
+        boolean terrainMatch = true;
         for (int a = 0; a < actions.size(); a++) {
             actionStr.add(actions.get(a).getType());
         }
         for (int t = 0; t < sC.size(); t++) {
-            terrainTypes.add(board.getTiles().get(sC.get(t)).getType());
+            terrainTypes.add(0, board.getTiles().get(sC.get(t)).getType());
+            if(!terrainTypes.get(0).equals(players.get(turn).getTerrain())) {
+                terrainMatch = false;
+            }
         }
 
         //checking for forbidden terrains
@@ -214,9 +226,18 @@ public class KingdomBuilderMain {
         if (terrainTypes.contains("w") && !actionStr.contains("Harbor")) {
                 return false;
         }
-        if (board.isAdjacent(sC.get(0)), sC.get(1)) && board.isAdjacent(sC.get(0)), sC.get(2)) && board.isAdjacent(sC.get(2)), sC.get(1))) {
-    
+
+        //checking if the settlements are all adjacent
+        if (board.isAdjacent(sC.get(0), sC.get(1)) && board.isAdjacent(sC.get(0), sC.get(2)) && board.isAdjacent(sC.get(2), sC.get(1))) {
+            if (terrainMatch == false) {
+
+            }
         }
+        
+        //for Tavern, make sure extra settlement is place in a line
+        //for Tower, check for edges
+        //Oracle, Farm, and Oasis all allow for extra placement of one tile
+        //With Harbor and Barn, reckeck ownership of actions
         //if(sC.get(0).isAdjacent(sC.get(1)) && sc.get(1).isAdjacent(sC.get(2)) && sC.get(0).isAdjacent(sC.get(2))) {return true}
         //iff (sC.get(0).get
         return false;
