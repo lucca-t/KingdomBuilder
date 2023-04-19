@@ -8,6 +8,7 @@ public class KingdomBuilderMain {
     private ArrayList<Card> terrains;
     private int turn, num1, num2, num3, num4;
     private Board board;
+    private HashMap tiles;
     public boolean end;
     private ArrayList<double[]> settlementCords;
 
@@ -142,7 +143,7 @@ public class KingdomBuilderMain {
     public void playTurn(){
         players.get(turn).getTerrain().setVisibility(true);
         for (int i = 0; i < settlementCords.size(); i++) {
-            board.getBoard().get(settlementCords.get(i)).setOccupancy(players.get(turn));
+            board.getTiles().get(settlementCords.get(i)).setOccupancy(players.get(turn));
         }
     }
 
@@ -195,7 +196,27 @@ public class KingdomBuilderMain {
     }
 
     public boolean checkValidPlacement(ArrayList<double[]> sC) {
+        Action tempHarbor = new Action(5, "Harbor", false);
         ArrayList<Action> actions = players.get(turn).getActions();
+        ArrayList<String> actionStr = new ArrayList<String>();
+        ArrayList<String> terrainTypes = new ArrayList<String>();
+        for (int a = 0; a < actions.size(); a++) {
+            actionStr.add(actions.get(a).getType());
+        }
+        for (int t = 0; t < sC.size(); t++) {
+            terrainTypes.add(board.getTiles().get(sC.get(t)).getType());
+        }
+
+        //checking for forbidden terrains
+        if (terrainTypes.contains("m")) {
+            return false;
+        }
+        if (terrainTypes.contains("w") && !actionStr.contains("Harbor")) {
+                return false;
+        }
+        if (board.isAdjacent(sC.get(0)), sC.get(1)) && board.isAdjacent(sC.get(0)), sC.get(2)) && board.isAdjacent(sC.get(2)), sC.get(1))) {
+    
+        }
         //if(sC.get(0).isAdjacent(sC.get(1)) && sc.get(1).isAdjacent(sC.get(2)) && sC.get(0).isAdjacent(sC.get(2))) {return true}
         //iff (sC.get(0).get
         return false;
