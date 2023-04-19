@@ -295,7 +295,11 @@ public class Board {
             players.get(p).addPoints(clustersize.size());
         }
     }
-    public ArrayList<Integer> scoreLordsHelper2(ArrayList<Player> players, int quadrant){
+    public int scoreLordsHelper2(ArrayList<Player> players, int player){
+        int ps1 = 0;
+        int ps2 = 0;
+        int ps3 = 0;
+        int ps4 = 0;
         Player first = new Player("hello");
         Player sec = new Player("hello");
         Player third = new Player("hello");
@@ -305,16 +309,158 @@ public class Board {
         ArrayList<Integer> p2 = getNumSettle(players.get(1));
         ArrayList<Integer> p3 = getNumSettle(players.get(2));
         ArrayList<Integer> p4 = getNumSettle(players.get(3));
-        ArrayList<Integer> complete = new ArrayList<>();
+        comp.add(p1);
+        comp.add(p2);
+        comp.add(p3);
+        comp.add(p4);
+        ArrayList<ArrayList<Integer>> temp = comp;
         int big = 0;
         for(int i = 0; i < comp.size(); i++){
             if(comp.get(i).get(0) > big){
                 big = comp.get(i).get(0);
             }
         }
-        if(big == comp.get(0).get(0)){
-            first = players.get(0);
+        int pineapple = 0;
+        for(int i = 0; i < comp.size(); i++){
+            if(comp.get(i).get(0) < big && comp.get(i).get(0) > pineapple){
+                pineapple = comp.get(i).get(0);
+            }
         }
+        if(big == comp.get(0).get(0)){
+            ps1 += 12;
+        }
+        if(pineapple == comp.get(0).get(0)){
+            ps1 += 6;
+        }
+        if(pineapple == comp.get(1).get(0)){
+            ps2 += 6;
+        }
+        if(pineapple == comp.get(2).get(0)){
+            ps3 += 6;
+        }
+        if(pineapple == comp.get(3).get(0)){
+            ps4 += 6;
+        }
+        if(big == comp.get(1).get(0)){
+            ps2 += 12;
+        }
+        if(big == comp.get(2).get(0)){
+            ps3 += 12;
+        }
+        if(big == comp.get(3).get(0)){
+            ps4 += 12;
+        }
+        int bigg = 0;
+        for(int i = 0; i < comp.size(); i++){
+            if(comp.get(i).get(1) > bigg){
+                bigg = comp.get(i).get(1);
+            }
+        }
+        int pine = 0;
+        for(int i = 0; i < comp.size(); i++){
+            if(comp.get(i).get(1) < bigg && comp.get(i).get(1) > pine){
+                pine = comp.get(i).get(1);
+            }
+        }
+        if(bigg == comp.get(0).get(1)){
+            ps1 += 12;
+        }
+        if(pine == comp.get(0).get(1)){
+            ps1 += 6;
+        }
+        if(pine == comp.get(1).get(1)){
+            ps2 += 6;
+        }
+        if(pine == comp.get(2).get(1)){
+            ps3 += 6;
+        }
+        if(pine == comp.get(3).get(1)){
+            ps4 += 6;
+        }
+        if(bigg == comp.get(1).get(1)){
+            ps2 += 12;
+        }
+        if(bigg == comp.get(2).get(1)){
+            ps3 += 12;
+        }
+        if(bigg == comp.get(3).get(1)){
+            ps4 += 12;
+        }
+        int big3 = 0;
+        for(int i = 0; i < comp.size(); i++){
+            if(comp.get(i).get(2) > big){
+                big3 = comp.get(i).get(2);
+            }
+        }
+        int pin = 0;
+        for(int i = 0; i < comp.size(); i++){
+            if(comp.get(i).get(2) < big3 && comp.get(i).get(2) > pin){
+                pin = comp.get(i).get(2);
+            }
+        }
+        if(big3 == comp.get(0).get(2)){
+            ps1 += 12;
+        }
+        if(pin == comp.get(0).get(2)){
+            ps1 += 6;
+        }
+        if(pin == comp.get(1).get(2)){
+            ps2 += 6;
+        }
+        if(pin == comp.get(2).get(2)){
+            ps3 += 6;
+        }
+        if(pin == comp.get(3).get(2)){
+            ps4 += 6;
+        }
+        if(big3 == comp.get(1).get(2)){
+            ps2 += 12;
+        }
+        if(big3 == comp.get(2).get(2)){
+            ps3 += 12;
+        }
+        if(big3 == comp.get(3).get(2)){
+            ps4 += 12;
+        }
+
+        int big4 = 0;
+        for(int i = 0; i < comp.size(); i++){
+            if(comp.get(i).get(3) > big4){
+                big4 = comp.get(i).get(3);
+            }
+        }
+        int pi = 0;
+        for(int i = 0; i < comp.size(); i++){
+            if(comp.get(i).get(3) < big4 && comp.get(i).get(3) > pi){
+                pi = comp.get(i).get(3);
+            }
+        }
+        if(big4 == comp.get(0).get(3)){
+            ps1 += 12;
+        }
+        if(pi == comp.get(0).get(3)){
+            ps1 += 6;
+        }
+        if(pi == comp.get(1).get(3)){
+            ps2 += 6;
+        }
+        if(pi == comp.get(2).get(3)){
+            ps3 += 6;
+        }
+        if(pi == comp.get(3).get(3)){
+            ps4 += 6;
+        }
+        if(big4 == comp.get(1).get(3)){
+            ps2 += 12;
+        }
+        if(big4 == comp.get(2).get(3)){
+            ps3 += 12;
+        }
+        if(big4 == comp.get(3).get(3)){
+            ps4 += 12;
+        }
+
+
     }
     public int scoreLordsHelper(Player p){
 
@@ -385,6 +531,14 @@ public class Board {
                 if (y.get(i)[1] + 1 == x[1] || y.get(i)[1] + 0.5 == x[1] || y.get(i)[1] - 1 == x[1] || y.get(i)[1] - 0.5 == x[1]) {
                     return true;
                 }
+            }
+        }
+        return false;
+    }
+    public boolean isAdjacent(double[] x, double[] y) {
+        if (y[0] + 1 == x[0] || y[0] + 0.5 == x[0] || y[0] - 1 == x[0] || y[0] - 0.5 == x[0]) {
+            if (y[1] + 1 == x[1] || y[1] + 0.5 == x[1] || y[1] - 1 == x[1] || y[1] - 0.5 == x[1]) {
+                return true;
             }
         }
         return false;
