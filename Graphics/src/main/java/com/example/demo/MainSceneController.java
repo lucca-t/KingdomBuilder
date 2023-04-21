@@ -1,38 +1,16 @@
 package com.example.demo;
 
 import javafx.event.ActionEvent;
-        import javafx.fxml.FXML;
-        import javafx.scene.control.Button;
-        import javafx.scene.control.Label;
-        import javafx.scene.image.ImageView;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 
 public class MainSceneController {
 
     @FXML
-    private ImageView bonusTile0;
+    private ImageView bonusTile0,bonusTile1,bonusTile2,bonusTile3,bonusTile4,bonusTile5,bonusTile6,bonusTile7;
 
-    @FXML
-    private ImageView bonusTile1;
-
-    @FXML
-    private ImageView bonusTile2;
-
-    @FXML
-    private ImageView bonusTile3;
-
-    @FXML
-    private ImageView bonusTile4;
-
-    @FXML
-    private ImageView bonusTile5;
-
-    @FXML
-    private ImageView bonusTile6;
-
-    @FXML
-    private ImageView bonusTile7;
-
-    @FXML
     private Button confirmPlaceButton;
 
     @FXML
