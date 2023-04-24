@@ -6,11 +6,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class MainSceneController {
 
     @FXML
     private ImageView bonusTile0,bonusTile1,bonusTile2,bonusTile3,bonusTile4,bonusTile5,bonusTile6,bonusTile7;
-
+    @FXML
     private Button confirmPlaceButton;
 
     @FXML
@@ -58,6 +61,28 @@ public class MainSceneController {
     @FXML
     private Button useBonusButton;
 
+    public KingdomBuilderMain game;
+    public MainSceneController(){
+         game = new KingdomBuilderMain();
+
+        ArrayList players =game.getPlayers();
+       game.getTurnPlayer();
+        playerName.setText("Player "+game.getTurnNum());
+
+
+
+
+
+
+
+
+
+
+    }
+
+
+
+
     @FXML
     void confirmPlace(ActionEvent event) {
 
@@ -82,6 +107,8 @@ public class MainSceneController {
     void useBonus(ActionEvent event) {
 
     }
+
+
 
 }
 
