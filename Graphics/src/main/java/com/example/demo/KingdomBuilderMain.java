@@ -15,6 +15,7 @@ public class KingdomBuilderMain {
     private ArrayList<double[]> settlementCords;
 
     public KingdomBuilderMain () {
+        pointCardsall = new ArrayList<>();
         pointCardsall.add("Citizen");
         pointCardsall.add("Discoverers");
         pointCardsall.add("Farmers");
