@@ -245,5 +245,7 @@ public class KingdomBuilderMain {
         //iff (sC.get(0).get
         return false;
     }
-
+    public int getTurnNum(){
+        return turn;
+    }
 }
