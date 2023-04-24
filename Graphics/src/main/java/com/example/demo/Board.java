@@ -8,7 +8,7 @@ public class Board {
     //desert: d, canyon: c, water: w, forest: s, flowers: f, grass: g, mountains: m, castle: castle
     private int location;
     private ArrayList<Action> actions;
-    private HashMap<double[], HexTile> tiles;
+    private HashMap<Coord, HexTile> tiles;
 
     String[] board1 = {"d", "d", "c", "w", "w", "s", "s", "s", "g", "g", "d", "castle", "c", "w", "s", "s", "s", "Barn", "g", "g", "c", "c", "c", "f", "f", "f", "s", "c", "f", "f", "c", "c", "f", "f", "w", "d", "d", "c", "c", "f", "c", "g", "g", "w", "f", "f", "d", "d", "c", "c", "g", "g", "Barn", "f", "w", "f", "w", "d", "d", "c", "g", "g", "g", "s", "f", "f", "w", "w", "d", "d", "g", "g", "s", "s", "m", "w", "w", "w", "d", "w", "g", "m", "s", "s", "w", "w", "w", "w", "w", "w", "s", "s", "s", "w", "w", "w", "w", "w", "w", "w"};
     String[] board2 = {"d", "d", "c", "w", "w", "s", "s", "g", "g", "g", "d", "c", "w", "f", "f", "s", "s", "s", "g", "g", "d", "d", "w", "f", "f", "s", "s", "Oasis", "f", "g", "w", "w", "w", "f", "g", "s", "f", "f", "f", "f", "w", "w", "w", "w", "g", "g", "g", "g", "f", "f", "w", "s", "s", "w", "g", "g", "c", "c", "d", "c", "w", "s", "c", "s", "w", "g", "c", "c", "d", "c", "w", "castle", "c", "f", "w", "Oasis", "d", "d", "c", "w", "w", "w", "c", "f", "w", "w", "w", "d", "d", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w"};
@@ -24,39 +24,38 @@ public class Board {
         actions.add(new Action(2, "Oasis", false));
         actions.add(new Action(2, "Harbor", false));
         actions.add(new Action(2, "Oracle", false));
-        tiles = new HashMap<double[], HexTile>();
+        tiles = new HashMap<Coord, HexTile>();
         int i = 0;
         int y = 0;
         int x = 0;
+        Coord c;
         for (y = 0; y < 10; y++) {
             for (x = 10; x < 20; x++) {
-                double[] coord = new double[2];
                 if (y%2 == 0) {
-                    coord[0] = y;
-                    coord[1] = x;
+                    c = new Coord(y, x);
                 }
                 else {
-                    coord[0] = y;
-                    coord[1] = x + 0.5;
+                    c = new Coord(y, x + 0.5);
                 }
 //                if (boards[b1][i])
-                tiles.put(coord, new HexTile((boards[b1][i])));
+                tiles.put(c, new HexTile((boards[b1][i])));
                 i++;
             }
         }
         i = 0;
         for (y = 0; y < 10; y++) {
             for (x = 0; x < 10; x++) {
-                double[] coord = new double[2];
                 if (y%2 == 0) {
-                    coord[0] = y;
-                    coord[1] = x;
+                    c = new Coord(y, x);
+//                    coord[0] = y;
+//                    coord[1] = x;
                 }
                 else {
-                    coord[0] = y;
-                    coord[1] = x + 0.5;
+                    c = new Coord(y, x + 0.5);
+//                    coord[0] = y;
+//                    coord[1] = x + 0.5;
                 }
-                tiles.put(coord, new HexTile((boards[b2][i])));
+                tiles.put(c, new HexTile((boards[b2][i])));
                 i++;
             }
         }
@@ -65,14 +64,16 @@ public class Board {
             for (x = 0; x < 10; x++) {
                 double[] coord = new double[2];
                 if (y%2 == 0) {
+                    c = new Coord(y, x);
                     coord[0] = y;
                     coord[1] = x;
                 }
                 else {
+                    c = new Coord(y, x + 0.5);
                     coord[0] = y;
                     coord[1] = x + 0.5;
                 }
-                tiles.put(coord, new HexTile((boards[b3][i])));
+                tiles.put(c, new HexTile((boards[b3][i])));
                 i++;
             }
         }
@@ -81,26 +82,34 @@ public class Board {
             for (x = 10; x < 20; x++) {
                 double[] coord = new double[2];
                 if (y%2 == 0) {
+                    c = new Coord(y, x);
                     coord[0] = y;
                     coord[1] = x;
                 }
                 else {
+                    c = new Coord(y, x + 0.5);
                     coord[0] = y;
                     coord[1] = x + 0.5;
                 }
-                tiles.put(coord, new HexTile((boards[b1][i])));
+                tiles.put(c, new HexTile((boards[b1][i])));
                 i++;
             }
         }
     }
-    public ArrayList<double[]> findAdjacencies(double[] coord){
-        ArrayList<double[]> adjacent = new ArrayList<double[]>();
-        double[] left = {coord[0] - 1, coord[1]};
-        double[] right = {coord[0] + 1, coord[1]};
-        double[] tL = {coord[0] - 0.5, coord[1] + 1};
-        double[] tR = {coord[0] + 0.5, coord[1] + 1};
-        double[] bL = {coord[0] - 0.5, coord[1] - 1};
-        double[] bR = {coord[0] + 0.5, coord[1] - 1};
+    public ArrayList<Coord> findAdjacencies(Coord c){
+        ArrayList<Coord> adjacent = new ArrayList<Coord>();
+        Coord left = new Coord(c.getY(), c.getX() - 1);
+//        double[] left = {coord[0] - 1, coord[1]};
+        Coord right = new Coord(c.getY(), c.getX() + 1);
+//        double[] right = {coord[0] + 1, coord[1]};
+        Coord tL = new Coord(c.getY() + 1, c.getX() - 0.5);
+//        double[] tL = {coord[0] - 0.5, coord[1] + 1};
+        Coord tR = new Coord(c.getY() + 1, c.getX() + 0.5);
+//        double[] tR = {coord[0] + 0.5, coord[1] + 1};
+        Coord bL = new Coord(c.getY() - 1, c.getX()- 0.5);
+//        double[] bL = {coord[0] - 0.5, coord[1] - 1};
+        Coord bR = new Coord(c.getY() - 1, c.getX() + 0.5);
+//        double[] bR = {coord[0] + 0.5, coord[1] - 1};
         adjacent.add(left);
         adjacent.add(right);
         adjacent.add(tL);
@@ -210,7 +219,7 @@ public class Board {
     }
     public void scoreMerchants(ArrayList<Player> players) {
         for(int p = 0; p < players.size(); p++){
-            ArrayList<double[]>  bulbasaur = players.get(p).getOccupiedTiles();
+            ArrayList<Coord>  bulbasaur = players.get(p).getOccupiedTiles();
             ArrayList<ArrayList<double[]>> squirtle = new ArrayList<>();
             for(int i = 0; i < bulbasaur.size(); i++){
                 squirtle.add(getCluster(bulbasaur.get(i), players.get(p)));
@@ -533,14 +542,15 @@ public class Board {
         temp.add(mcqueen);
         return temp;
     }
-    public boolean hasAdjacent(double[] x, ArrayList<double[]> y) {
-        for (int i = 0; i < y.size(); i++) {
-            if (y.get(i)[0] + 1 == x[0] || y.get(i)[0] + 0.5 == x[0] || y.get(i)[0] - 1 == x[0] || y.get(i)[0] - 0.5 == x[0]) {
-                if (y.get(i)[1] + 1 == x[1] || y.get(i)[1] + 0.5 == x[1] || y.get(i)[1] - 1 == x[1] || y.get(i)[1] - 0.5 == x[1]) {
+    public boolean hasAdjacent(double[] tile, ArrayList<double[]> occupiedTiles) {
+        for (int i = 0; i < occupiedTiles.size(); i++) {
+            if (occupiedTiles.get(i)[0] + 1 == tile[0] || occupiedTiles.get(i)[0] + 0.5 == tile[0] || occupiedTiles.get(i)[0] - 1 == tile[0] || occupiedTiles.get(i)[0] - 0.5 == tile[0]) {
+                if (occupiedTiles.get(i)[1] + 1 == tile[1] || occupiedTiles.get(i)[1] + 0.5 == tile[1] || occupiedTiles.get(i)[1] - 1 == tile[1] || occupiedTiles.get(i)[1] - 0.5 == tile[1]) {
                     return true;
                 }
             }
         }
+        //can use
         return false;
     }
     public boolean isAdjacent(double[] x, double[] y) {
@@ -551,7 +561,7 @@ public class Board {
         }
         return false;
     }
-    public ArrayList<double[]> getCluster(double[] x, Player p){
+    public ArrayList<Coord> getCluster(double[] x, Player p){
         ArrayList<double[]> cluster = new ArrayList<>();
         if(!hasAdjacent(x,p.getOccupiedTiles())){
             cluster.add(x);
@@ -661,10 +671,10 @@ public class Board {
 
     }
 //    public ArrayList<HexTile> findValidPlacements() {}
-    public HashMap<double[], HexTile> getBoard(){
+    public HashMap<Coord, HexTile> getBoard(){
         return tiles;
     }
-    public HashMap<double[], HexTile> getTiles(){
+    public HashMap<Coord, HexTile> getTiles(){
         return tiles;
     }
 

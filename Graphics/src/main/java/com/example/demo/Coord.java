@@ -4,7 +4,7 @@ public class Coord {
     private double x;
     private double y;
 
-    public Coord(int r, int c){
+    public Coord(double r, double c){
         x = c;
         y = r;
     }
