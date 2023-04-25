@@ -12,7 +12,7 @@ public class Tester {
         Board b = new Board(1, 2, 3, 4);
         String board = "";
         HashMap tiles = b.getBoard();
-        String tileString = b.getBoardTemp();
+        //String tileString = b.getBoardTemp();
         double[] coord = new double[2];
         coord[0] = 0;
         coord[1] = 1;

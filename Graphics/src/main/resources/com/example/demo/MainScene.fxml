@@ -40,6 +40,7 @@
 
 <VBox maxHeight="801.0" prefHeight="801.0" prefWidth="1424.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.MainSceneController">
   <children>
+      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
     <AnchorPane maxHeight="801.0" maxWidth="1424.0" minHeight="801.0" minWidth="1424.0" prefHeight="801.0" prefWidth="1424.0" VBox.vgrow="ALWAYS">
       <children>
             <VBox layoutX="48.0" layoutY="318.0" prefHeight="243.0" prefWidth="290.0">

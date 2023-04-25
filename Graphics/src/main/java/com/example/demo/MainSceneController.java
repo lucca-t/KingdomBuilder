@@ -4,8 +4,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -61,13 +64,16 @@ public class MainSceneController {
     @FXML
     private Button useBonusButton;
 
-    public KingdomBuilderMain game;
-    public MainSceneController(){
+    //public KingdomBuilderMain game;
+   /* public MainSceneController(){
          game = new KingdomBuilderMain();
 
         ArrayList players =game.getPlayers();
        game.getTurnPlayer();
         playerName.setText("Player "+game.getTurnNum());
+        //drawPlayerinfo();
+       // drawPointsCards();
+       // drawInfoCards();
 
 
 
@@ -75,12 +81,53 @@ public class MainSceneController {
 
 
 
+    }*/
+
+    private void drawInfoCards() {
 
 
 
     }
 
+    private void drawPointsCards()  {
+        pointCard0 = new ImageView(new Image("/images/WorkerCard.jpg"));
 
+
+    }
+    private Image returnPointsCards(String str){
+        Image temp=new Image("/images/board0.png");
+
+        if(str.equals("Citizen"))
+            temp=new Image("/images/CitizenCard.jpg");
+        else if(str.equals("Discoverers"))
+            temp=new Image("/images/DiscovererCard.jpg");
+        else if(str.equals("Farmers"))
+            temp=new Image("/images/FarmerCard.jpg");
+        else if(str.equals("Fishermen"))
+            temp=new Image("/images/FishermanCard.jpg");
+        else if(str.equals("Hermits"))
+            temp=new Image("/images/HermitCard.jpg");
+        else if(str.equals("Knights"))
+            temp=new Image("/images/KnightCard.jpg");
+        else if(str.equals("Lords"))
+            temp=new Image("/images/LordCard.jpg");
+        else if(str.equals("Merchants"))
+            temp=new Image("/images/MerchantCard.jpg");
+        else if(str.equals("Miners"))
+            temp=new Image("/images/Workers.jpg");
+
+
+
+
+
+        return temp;
+
+    }
+
+    private void drawPlayerinfo() {
+        
+        
+    }
 
 
     @FXML
