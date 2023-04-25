@@ -126,20 +126,20 @@ public class Board {
         }
         return false;
     }
-    public void setCheckedFalse(double[] crd){
+    public void setCheckedFalse(Coord crd){
         tiles.get(crd).setCheck(false);
     }
     public void scoreFishermen(ArrayList<Player> players) {
         for(int p = 0; p < players.size(); p++) {
             int cnt = 0;
             for(int i = 0; i < players.get(p).getOccupiedTiles().size(); i++){
-                ArrayList<double[]> temp = findAdjacencies(players.get(p).getOccupiedTiles().get(i));
+                ArrayList<Coord> temp = findAdjacencies(players.get(p).getOccupiedTiles().get(i));
                 for(int k = 0; k < temp.size(); k++){
                     cnt+=scoreFishermen(temp.get(k));
                 }
             }
             for(int i = 0; i < players.get(p).getOccupiedTiles().size(); i++){
-                ArrayList<double[]> temp = findAdjacencies(players.get(p).getOccupiedTiles().get(i));
+                ArrayList<Coord> temp = findAdjacencies(players.get(p).getOccupiedTiles().get(i));
                 for(int k = 0; k < temp.size(); k++){
                     setCheckedFalse(temp.get(k));
                 }
@@ -148,7 +148,7 @@ public class Board {
         }
 
     }
-    public int scoreFishermen(double[] crd){
+    public int scoreFishermen(Coord crd){
         if(tiles.get(crd).getType().equals("w") && tiles.get(crd).getChecked() == false){
             tiles.get(crd).setCheck(true);
             return 1;
@@ -161,13 +161,13 @@ public class Board {
         for(int p = 0; p < players.size(); p++) {
             int cnt = 0;
             for(int i = 0; i < players.get(p).getOccupiedTiles().size(); i++){
-                ArrayList<double[]> temp = findAdjacencies(players.get(p).getOccupiedTiles().get(i));
+                ArrayList<Coord> temp = findAdjacencies(players.get(p).getOccupiedTiles().get(i));
                 for(int k = 0; k < temp.size(); k++){
                     cnt+=scoreMiners(temp.get(k));
                 }
             }
             for(int i = 0; i < players.get(p).getOccupiedTiles().size(); i++){
-                ArrayList<double[]> temp = findAdjacencies(players.get(p).getOccupiedTiles().get(i));
+                ArrayList<Coord> temp = findAdjacencies(players.get(p).getOccupiedTiles().get(i));
                 for(int k = 0; k < temp.size(); k++){
                     setCheckedFalse(temp.get(k));
                 }
@@ -176,7 +176,7 @@ public class Board {
         }
 
     }
-    public int scoreMiners(double[] crd){
+    public int scoreMiners(Coord crd){
         if(tiles.get(crd).getType().equals("m") && tiles.get(crd).getChecked() == false){
             tiles.get(crd).setCheck(true);
             return 1;
@@ -189,13 +189,13 @@ public class Board {
         for(int p = 0; p < players.size(); p++) {
             int cnt = 0;
             for(int i = 0; i < players.get(p).getOccupiedTiles().size(); i++){
-                ArrayList<double[]> temp = findAdjacencies(players.get(p).getOccupiedTiles().get(i));
+                ArrayList<Coord> temp = findAdjacencies(players.get(p).getOccupiedTiles().get(i));
                 for(int k = 0; k < temp.size(); k++){
                     cnt+=scoreWorkers(temp.get(k));
                 }
             }
             for(int i = 0; i < players.get(p).getOccupiedTiles().size(); i++){
-                ArrayList<double[]> temp = findAdjacencies(players.get(p).getOccupiedTiles().get(i));
+                ArrayList<Coord> temp = findAdjacencies(players.get(p).getOccupiedTiles().get(i));
                 for(int k = 0; k < temp.size(); k++){
                     setCheckedFalse(temp.get(k));
                 }
@@ -204,7 +204,7 @@ public class Board {
         }
 
     }
-    public int scoreWorkers(double[] crd){
+    public int scoreWorkers(Coord crd){
         if(tiles.get(crd).getType().equals("castle") && tiles.get(crd).getChecked() == false){
             tiles.get(crd).setCheck(true);
             return 1;
@@ -220,7 +220,7 @@ public class Board {
     public void scoreMerchants(ArrayList<Player> players) {
         for(int p = 0; p < players.size(); p++){
             ArrayList<Coord>  bulbasaur = players.get(p).getOccupiedTiles();
-            ArrayList<ArrayList<double[]>> squirtle = new ArrayList<>();
+            ArrayList<ArrayList<Coord>> squirtle = new ArrayList<>();
             for(int i = 0; i < bulbasaur.size(); i++){
                 squirtle.add(getCluster(bulbasaur.get(i), players.get(p)));
             }
@@ -229,7 +229,7 @@ public class Board {
             for(int i = 0; i < squirtle.size(); i++){
                 int cnt = 0;
                 for(int k = 0; k < squirtle.get(i).size(); k++){
-                    ArrayList<double[]> charmander = findAdjacencies(squirtle.get(i).get(k));
+                    ArrayList<Coord> charmander = findAdjacencies(squirtle.get(i).get(k));
                     for(int j = 0; j < charmander.size(); j++){
                         if(!tiles.get(j).getTouched() && tiles.get(j).getType().length() > 1){
                             cnt++;
@@ -257,8 +257,8 @@ public class Board {
         for (int p = 0; p < players.size(); p++) {
             ArrayList<Double> temp = new ArrayList<Double>();
             for(int i = 0; i < players.get(p).getOccupiedTiles().size(); i++){
-                if(!contains(temp, players.get(p).getOccupiedTiles().get(i)[1])) {
-                    temp.add(players.get(p).getOccupiedTiles().get(i)[1]);
+                if(!contains(temp, players.get(p).getOccupiedTiles().get(i).getY())) {
+                    temp.add(players.get(p).getOccupiedTiles().get(i).getY());
                 }
             }
             players.get(p).addPoints(temp.size());
@@ -270,15 +270,15 @@ public class Board {
             ArrayList<Integer> cnts = new ArrayList<Integer>();
             for(int i = 0; i < players.get(p).getOccupiedTiles().size(); i++){
                 //get arraylist of all y coordinates of all settlements then get the number of settlements on each y coordinate then return the largest value
-                if(!contains(temp, players.get(p).getOccupiedTiles().get(i)[1])) {
-                    temp.add(players.get(p).getOccupiedTiles().get(i)[1]);
+                if(!contains(temp, players.get(p).getOccupiedTiles().get(i).getY())) {
+                    temp.add(players.get(p).getOccupiedTiles().get(i).getY());
                 }
             }
             for(int i = 0; i < temp.size(); i++){
                 double x = temp.get(i);
                 int y = 0;
                 for(int k = 0; k < players.get(p).getOccupiedTiles().size(); k++){
-                    if(players.get(p).getOccupiedTiles().get(k)[1] == x){
+                    if(players.get(p).getOccupiedTiles().get(k).getY() == x){
                         y++;
                     }
                 }
@@ -298,7 +298,7 @@ public class Board {
         for(int p = 0; p < players.size(); p++) {
             ArrayList<Integer> clustersize = new ArrayList<>();
             for(int i = 0; i < players.get(p).getOccupiedTiles().size(); i++) {
-                ArrayList<double[]> eminem = getCluster(players.get(p).getOccupiedTiles().get(i), players.get(p));
+                ArrayList<Coord> eminem = getCluster(players.get(p).getOccupiedTiles().get(i), players.get(p));
                 clustersize.add(eminem.size());
             }
             players.get(p).addPoints(clustersize.size());
@@ -495,7 +495,7 @@ public class Board {
         for(int p = 0; p < players.size(); p++) {
             ArrayList<Integer> clustersize = new ArrayList<>();
             for(int i = 0; i < players.get(p).getOccupiedTiles().size(); i++){
-                ArrayList<double[]> eminem = getCluster(players.get(p).getOccupiedTiles().get(i), players.get(p));
+                ArrayList<Coord> eminem = getCluster(players.get(p).getOccupiedTiles().get(i), players.get(p));
                 clustersize.add(eminem.size());
             }
             int big = 0;
@@ -517,21 +517,21 @@ public class Board {
         int shrek = 0;
         int mcqueen = 0;
         for(int i = 0; i < p.getOccupiedTiles().size(); i++){
-            if(p.getOccupiedTiles().get(i)[0] >= 10 && p.getOccupiedTiles().get(i)[0] <= 19 ) {
-                if(p.getOccupiedTiles().get(i)[1] <= 9) {
+            if(p.getOccupiedTiles().get(i).getX() >= 10 && p.getOccupiedTiles().get(i).getX() <= 19 ) {
+                if(p.getOccupiedTiles().get(i).getY() <= 9) {
                     docbrown++;
                 }
             }
-            if(p.getOccupiedTiles().get(i)[1] >= 10 && p.getOccupiedTiles().get(i)[1] <= 19 ) {
-                if(p.getOccupiedTiles().get(i)[0] <= 9) {
+            if(p.getOccupiedTiles().get(i).getY() >= 10 && p.getOccupiedTiles().get(i).getY() <= 19 ) {
+                if(p.getOccupiedTiles().get(i).getX() <= 9) {
                     shrek++;
                 }
             }
-            if(p.getOccupiedTiles().get(i)[0] <= 9 && p.getOccupiedTiles().get(i)[1] <= 9){
+            if(p.getOccupiedTiles().get(i).getX() <= 9 && p.getOccupiedTiles().get(i).getY() <= 9){
                 mator++;
             }
-            if(p.getOccupiedTiles().get(i)[1] >= 10 && p.getOccupiedTiles().get(i)[1] <= 19 ) {
-                if(p.getOccupiedTiles().get(i)[0] >= 10 && p.getOccupiedTiles().get(i)[0] <= 19) {
+            if(p.getOccupiedTiles().get(i).getY() >= 10 && p.getOccupiedTiles().get(i).getY() <= 19 ) {
+                if(p.getOccupiedTiles().get(i).getX() >= 10 && p.getOccupiedTiles().get(i).getX() <= 19) {
                     mcqueen++;
                 }
             }
@@ -542,10 +542,10 @@ public class Board {
         temp.add(mcqueen);
         return temp;
     }
-    public boolean hasAdjacent(double[] tile, ArrayList<double[]> occupiedTiles) {
+    public boolean hasAdjacent(Coord tile, ArrayList<Coord> occupiedTiles) {
         for (int i = 0; i < occupiedTiles.size(); i++) {
-            if (occupiedTiles.get(i)[0] + 1 == tile[0] || occupiedTiles.get(i)[0] + 0.5 == tile[0] || occupiedTiles.get(i)[0] - 1 == tile[0] || occupiedTiles.get(i)[0] - 0.5 == tile[0]) {
-                if (occupiedTiles.get(i)[1] + 1 == tile[1] || occupiedTiles.get(i)[1] + 0.5 == tile[1] || occupiedTiles.get(i)[1] - 1 == tile[1] || occupiedTiles.get(i)[1] - 0.5 == tile[1]) {
+            if (occupiedTiles.get(i).getX() + 1 == tile.getX() || occupiedTiles.get(i).getX() + 0.5 == tile.getX() || occupiedTiles.get(i).getX() - 1 == tile.getX() || occupiedTiles.get(i).getX() - 0.5 == tile.getX()) {
+                if (occupiedTiles.get(i).getY() + 1 == tile.getY() || occupiedTiles.get(i).getY() + 0.5 == tile.getY() || occupiedTiles.get(i).getY() - 1 == tile.getY() || occupiedTiles.get(i).getY() - 0.5 == tile.getY()) {
                     return true;
                 }
             }
@@ -561,8 +561,8 @@ public class Board {
         }
         return false;
     }
-    public ArrayList<Coord> getCluster(double[] x, Player p){
-        ArrayList<double[]> cluster = new ArrayList<>();
+    public ArrayList<Coord> getCluster(Coord x, Player p){
+        ArrayList<Coord> cluster = new ArrayList<>();
         if(!hasAdjacent(x,p.getOccupiedTiles())){
             cluster.add(x);
             return cluster;
@@ -572,9 +572,9 @@ public class Board {
         }
         boolean hasstuff = true;
         while(hasstuff){
-            ArrayList<double[]> temp = cluster;
+            ArrayList<Coord> temp = cluster;
             for(int i = 0; i < temp.size(); i++){
-                ArrayList<double[]> spongebob = findPlayerAdjacencies(temp.get(i), p);
+                ArrayList<Coord> spongebob = findPlayerAdjacencies(temp.get(i), p);
                 if(spongebob.isEmpty()){
                     hasstuff = false;
                 }
@@ -588,9 +588,9 @@ public class Board {
         return cluster;
 
     }
-    public ArrayList<double[]> findPlayerAdjacencies(double[] coord, Player p){
-        ArrayList<double[]> adjacent = findAdjacencies(coord);
-        ArrayList<double[]> playeradj = new ArrayList<>();
+    public ArrayList<Coord> findPlayerAdjacencies(Coord coord, Player p){
+        ArrayList<Coord> adjacent = findAdjacencies(coord);
+        ArrayList<Coord> playeradj = new ArrayList<>();
         for(int i = 0; i < p.getOccupiedTiles().size(); i++){
             for(int k = 0; k < adjacent.size(); k++){
                 if(p.getOccupiedTiles().get(i).equals(adjacent.get(k)) && tiles.get(p.getOccupiedTiles().get(i)).getCounted() == false){
@@ -601,7 +601,7 @@ public class Board {
         }
         return playeradj;
     }
-    public void removeRepeats(ArrayList<double[]> x){
+    public void removeRepeats(ArrayList<Coord> x){
         for(int i = 0; i < x.size(); i++){
             for(int k = 0; k < x.size(); i++){
                 if(x.get(i).equals(x.get(k))){
@@ -610,7 +610,7 @@ public class Board {
             }
         }
     }
-    public void removeRepeatsdos(ArrayList<ArrayList<double[]>> x){
+    public void removeRepeatsdos(ArrayList<ArrayList<Coord>> x){
         for(int i = 0; i < x.size(); i++){
             for(int k = 0; k < x.size(); i++){
                 if(x.get(i).equals(x.get(k))){
@@ -628,21 +628,21 @@ public class Board {
             boolean three = false;
             boolean four = false;
             for(int i = 0; i < players.get(p).getOccupiedTiles().size(); i++){
-                if(players.get(p).getOccupiedTiles().get(i)[0] >= 10 && players.get(p).getOccupiedTiles().get(i)[0] <= 19 ) {
-                    if(players.get(p).getOccupiedTiles().get(i)[1] <= 9) {
+                if(players.get(p).getOccupiedTiles().get(i).getX() >= 10 && players.get(p).getOccupiedTiles().get(i).getX() <= 19 ) {
+                    if(players.get(p).getOccupiedTiles().get(i).getY() <= 9) {
                         one = true;
                     }
                 }
-                if(players.get(p).getOccupiedTiles().get(i)[0] <= 9 && players.get(p).getOccupiedTiles().get(i)[1] <= 9 ) {
+                if(players.get(p).getOccupiedTiles().get(i).getX() <= 9 && players.get(p).getOccupiedTiles().get(i).getY() <= 9 ) {
                     two = true;
                 }
-                if(players.get(p).getOccupiedTiles().get(i)[1] >= 10 && players.get(p).getOccupiedTiles().get(i)[1] <= 19 ) {
-                    if(players.get(p).getOccupiedTiles().get(i)[0] <= 9) {
+                if(players.get(p).getOccupiedTiles().get(i).getY() >= 10 && players.get(p).getOccupiedTiles().get(i).getY() <= 19 ) {
+                    if(players.get(p).getOccupiedTiles().get(i).getX() <= 9) {
                         three = true;
                     }
                 }
-                if(players.get(p).getOccupiedTiles().get(i)[0] >= 10 && players.get(p).getOccupiedTiles().get(i)[0] <= 19 ) {
-                    if(players.get(p).getOccupiedTiles().get(i)[1] >= 10 && players.get(p).getOccupiedTiles().get(i)[1] <= 19 ) {
+                if(players.get(p).getOccupiedTiles().get(i).getX() >= 10 && players.get(p).getOccupiedTiles().get(i).getX() <= 19 ) {
+                    if(players.get(p).getOccupiedTiles().get(i).getY() >= 10 && players.get(p).getOccupiedTiles().get(i).getY() <= 19 ) {
                         four = true;
                     }
                 }
@@ -674,8 +674,14 @@ public class Board {
     public HashMap<Coord, HexTile> getBoard(){
         return tiles;
     }
+//    public String getBoardTemp(){
+//        return tiles.toString();
+//    }
     public HashMap<Coord, HexTile> getTiles(){
         return tiles;
     }
+//    public String getTilesTemp(){
+//        return tiles.toString();
+//    }
 
 }

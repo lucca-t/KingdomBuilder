@@ -12,10 +12,11 @@ public class Tester {
         Board b = new Board(1, 2, 3, 4);
         String board = "";
         HashMap tiles = b.getBoard();
+        String tileString = b.getBoardTemp();
         double[] coord = new double[2];
         coord[0] = 0;
         coord[1] = 1;
-        System.out.println(tiles.get(coord));
+//        System.out.println(tiles.get(coord));
 
         //printing the HashMap of tiles
         System.out.println(b);
@@ -34,6 +35,6 @@ public class Tester {
         for (int i = 0; i < sC.size(); i++) {
              occupancies += game.getBoard().getTiles().get(sC.get(i)).getOccupancy().getColor() + " ";
         }
-        System.out.println(occupancies);
+//        System.out.println(occupancies);
     }
 }

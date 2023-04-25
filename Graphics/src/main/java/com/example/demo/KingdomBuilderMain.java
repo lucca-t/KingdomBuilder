@@ -28,25 +28,23 @@ public class KingdomBuilderMain {
         pointCardsall.add("Workers");
 
         //choosing boards
-        num1 = (int)(Math.random() * 8) + 1;
-        num2 = (int)(Math.random() * 8) + 1;
+        num1 = (int)(Math.random() * 3);
+        num2 = (int)(Math.random() * 3);
         while(num1==num2){
-            num2 = (int)(Math.random() * 8) + 1;
+            num2 = (int)(Math.random() * 3);
         }
-        num3 = (int)(Math.random() * 8) + 1;
+        num3 = (int)(Math.random() * 3);
         while(num3==num1 || num3==num2) {
-            num3 = (int)(Math.random() * 8) + 1;
+            num3 = (int)(Math.random() * 3);
         }
-        num4 = (int)(Math.random() * 8) + 1;
+        num4 = (int)(Math.random() * 3);
         while(num4 == num1 || num4 == num2 || num4 == num3){
-            num4 = (int)(Math.random() * 8) + 1;
+            num4 = (int)(Math.random() * 3);
         }
         board = new Board(num1, num2, num3, num4);
-
-        //
         players.add(new Player("red"));
         players.add(new Player("purple"));
-        players.add(new Player("green"));
+        players.add(new Player("pink"));
         players.add(new Player("orange"));
         for(int i = 0; i < 3; i++){
             int x = (int)(Math.random() * pointCardsall.size());
