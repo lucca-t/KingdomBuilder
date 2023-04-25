@@ -40,12 +40,12 @@
    <children>
       <ImageView fx:id="startScreen" fitHeight="788.0" fitWidth="1400.0" layoutX="-21.0" layoutY="-4.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@KingdomBuilderStartScreen.jpg" />
+            <Image url="@images/KingdomBuilderStartScreen.jpg" />
          </image>
       </ImageView>
       <ImageView fx:id="startButton" fitHeight="142.0" fitWidth="337.0" layoutX="528.0" layoutY="418.0" onMouseEntered="#startButtonEntered" onMouseExited="#startButtonExited" onMousePressed="#startButtonPressed" onMouseReleased="#startButtonReleased" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@startbutton.png" />
+            <Image url="@images/startbutton.png" />
          </image>
       </ImageView>
    </children>
