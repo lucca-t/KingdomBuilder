@@ -32,24 +32,17 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Polygon?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
-<VBox maxHeight="801.0" prefHeight="801.0" prefWidth="1424.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.MainSceneController">
+<VBox maxHeight="801.0" maxWidth="1313.0" prefHeight="738.0" prefWidth="1313.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.MainSceneController">
    <children>
-      <AnchorPane maxHeight="801.0" maxWidth="1424.0" minHeight="801.0" minWidth="1424.0" prefHeight="801.0" prefWidth="1424.0" VBox.vgrow="ALWAYS">
+      <AnchorPane maxHeight="760.0" maxWidth="1351.0" minHeight="760.0" minWidth="1351.0" prefHeight="760.0" prefWidth="1351.0" VBox.vgrow="ALWAYS">
          <children>
-            <VBox layoutX="48.0" layoutY="318.0" prefHeight="243.0" prefWidth="290.0">
+            <VBox layoutX="42.0" layoutY="322.0" prefHeight="243.0" prefWidth="290.0">
                <children>
                   <Button fx:id="finishTurnButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#finishTurn" prefHeight="113.0" prefWidth="305.0" text="Finish Turn" />
                   <Button fx:id="confirmPlaceButton" mnemonicParsing="false" onAction="#confirmPlace" prefHeight="113.0" prefWidth="335.0" text="Confirm Placements" />
@@ -62,7 +55,7 @@
                   </HBox>
                </children>
             </VBox>
-            <VBox layoutX="34.0" layoutY="36.0" prefHeight="79.0" prefWidth="242.0">
+            <VBox layoutX="66.0" layoutY="55.0" prefHeight="79.0" prefWidth="242.0">
                <children>
                   <Label fx:id="playerName" prefHeight="45.0" prefWidth="147.0" text="Player 1">
                      <font>
@@ -76,7 +69,7 @@
                   </Label>
                </children>
             </VBox>
-            <GridPane layoutX="48.0" layoutY="600.0" prefHeight="144.0" prefWidth="291.0">
+            <GridPane layoutX="51.0" layoutY="601.0" prefHeight="144.0" prefWidth="291.0">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -98,7 +91,7 @@
                   <ImageView fx:id="bonusTile7" fitHeight="72.0" fitWidth="72.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                </children>
             </GridPane>
-            <VBox layoutX="1140.0" layoutY="103.0" prefHeight="679.0" prefWidth="139.0">
+            <VBox layoutX="1141.0" layoutY="56.0" prefHeight="669.0" prefWidth="140.0">
                <children>
                   <ImageView fx:id="pointCard0" fitHeight="231.0" fitWidth="144.0" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fx:id="pointCard1" fitHeight="224.0" fitWidth="145.0" pickOnBounds="true" preserveRatio="true" />
@@ -111,15 +104,15 @@
                   <ImageView fx:id="firstPlayerToken" fitHeight="175.0" fitWidth="155.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </HBox>
-            <HBox layoutX="531.0" layoutY="14.0" prefHeight="120.0" prefWidth="469.0">
+            <HBox layoutX="531.0" layoutY="14.0" prefHeight="79.0" prefWidth="419.0">
                <children>
-                  <ImageView fx:id="infoTile0" fitHeight="112.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="infoTile1" fitHeight="112.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="infoTile2" fitHeight="112.0" fitWidth="140.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="infoTile3" fitHeight="112.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="infoTile0" fitHeight="74.0" fitWidth="104.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="infoTile1" fitHeight="74.0" fitWidth="104.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="infoTile2" fitHeight="74.0" fitWidth="104.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="infoTile3" fitHeight="74.0" fitWidth="104.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </HBox>
-            <GridPane layoutX="365.0" layoutY="135.0" prefHeight="652.0" prefWidth="761.0">
+            <GridPane layoutX="357.0" layoutY="95.0" prefHeight="652.0" prefWidth="760.0">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="379.75" minWidth="10.0" prefWidth="370.25" />
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="390.75" minWidth="10.0" prefWidth="390.75" />
