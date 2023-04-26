@@ -22,10 +22,13 @@ public class Tester {
         System.out.println(b.toString());
         System.out.println(tiles);
         Coord c = new Coord(0, 0);
-        System.out.println(tiles.get(c));
+//        System.out.println(tiles.get(c).toString());
         //placing settlements
         KingdomBuilderMain game = new KingdomBuilderMain();
-        System.out.println(game.getBoard().getTiles().get(c));
+        Board b2 = game.getBoard();
+        HashMap gameTiles = b2.getTiles();
+//        HexTile a = gameTiles.get(c);
+        System.out.println(game.getBoard().getTiles().get(c).toString());
 //        ArrayList<double[]> sC = new ArrayList<double[]>();
 //        double[] one = {2, 3.5};
 //        sC.add(one);
