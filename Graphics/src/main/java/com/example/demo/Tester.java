@@ -19,7 +19,10 @@ public class Tester {
 //        System.out.println(tiles.get(coord));
 
         //printing the HashMap of tiles
-        System.out.println(b);
+        System.out.println(b.toString());
+        System.out.println(tiles);
+        Coord c = new Coord(0, 0);
+        System.out.println(tiles.get(c));
         //placing settlements
 //        KingdomBuilderMain game = new KingdomBuilderMain();
 //        ArrayList<double[]> sC = new ArrayList<double[]>();

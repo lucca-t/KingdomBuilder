@@ -23,4 +23,9 @@ public class Coord {
         }
         return false;
     }
+
+    public String toString() {
+        String out = "(" + x + ", " + y + ")";
+        return out;
+    }
 }
