@@ -21,20 +21,20 @@ public class Tester {
         //printing the HashMap of tiles
         System.out.println(b);
         //placing settlements
-        KingdomBuilderMain game = new KingdomBuilderMain();
-        ArrayList<double[]> sC = new ArrayList<double[]>();
-        double[] one = {2, 3.5};
-        sC.add(one);
-        double[] two = {3, 3};
-        sC.add(two);
-        double[] three = {2, 4.5};
-        sC.add(three);
-        game.setSettlementCord(sC);
-
-        String occupancies = "";
-        for (int i = 0; i < sC.size(); i++) {
-             occupancies += game.getBoard().getTiles().get(sC.get(i)).getOccupancy().getColor() + " ";
-        }
-//        System.out.println(occupancies);
+//        KingdomBuilderMain game = new KingdomBuilderMain();
+//        ArrayList<double[]> sC = new ArrayList<double[]>();
+//        double[] one = {2, 3.5};
+//        sC.add(one);
+//        double[] two = {3, 3};
+//        sC.add(two);
+//        double[] three = {2, 4.5};
+//        sC.add(three);
+//        game.setSettlementCord(sC);
+//
+//        String occupancies = "";
+//        for (int i = 0; i < sC.size(); i++) {
+//             occupancies += game.getBoard().getTiles().get(sC.get(i)).getOccupancy().getColor() + " ";
+//        }
+////        System.out.println(occupancies);
     }
 }

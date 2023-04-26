@@ -12,7 +12,7 @@ public class KingdomBuilderMain {
     private Board board;
     private HashMap tiles;
     public boolean end;
-    private ArrayList<double[]> settlementCords;
+    private ArrayList<Coord> settlementCords;
 
     public KingdomBuilderMain () {
         pointCardsall = new ArrayList<>();
@@ -67,7 +67,7 @@ public class KingdomBuilderMain {
             players.get(j).setTerrain(terrains.get(choiceTerrain));
             terrains.remove(choiceTerrain);
         }
-        settlementCords = new ArrayList<double[]>();
+        settlementCords = new ArrayList<Coord>();
 //        runGame();
         //choose 4 random numbers out of 8, create a board object passing in the 4 numbers to the constructor in the order they are chosen
     }
@@ -101,7 +101,7 @@ public class KingdomBuilderMain {
         return players.get(turn);
     }
 
-    public void setSettlementCord(ArrayList<double[]> sC) {
+    public void setSettlementCord(ArrayList<Coord> sC) {
         if (checkValidPlacement(sC)) {
             settlementCords = sC;
         }
@@ -196,7 +196,7 @@ public class KingdomBuilderMain {
         return board;
     }
 
-    public boolean checkValidPlacement(ArrayList<double[]> sC) {
+    public boolean checkValidPlacement(ArrayList<Coord> sC) {
 
         /** time consuming plans: make a list of all tiles of a certian terrain type
          * make a list of all empty tiles adjacent to settled tiles, use retainAll to find intersection
@@ -229,11 +229,11 @@ public class KingdomBuilderMain {
         }
 
         //checking if the settlements are all adjacent
-        if (board.isAdjacent(sC.get(0), sC.get(1)) && board.isAdjacent(sC.get(0), sC.get(2)) && board.isAdjacent(sC.get(2), sC.get(1))) {
-            if (terrainMatch == false) {
-
-            }
-        }
+//        if (board.isAdjacent(sC.get(0), sC.get(1)) && board.isAdjacent(sC.get(0), sC.get(2)) && board.isAdjacent(sC.get(2), sC.get(1))) {
+//            if (terrainMatch == false) {
+//
+//            }
+//        }
         
         //for Tavern, make sure extra settlement is place in a line
         //for Tower, check for edges
