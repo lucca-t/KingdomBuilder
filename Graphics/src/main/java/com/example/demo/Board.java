@@ -671,12 +671,12 @@ public class Board {
 
     }
 //    public ArrayList<HexTile> findValidPlacements() {}
-    public HashMap<Coord, HexTile> getBoard(){
-        return tiles;
-    }
-//    public String getBoardTemp(){
-//        return tiles.toString();
+//    public HashMap<Coord, HexTile> getBoard(){
+//        return tiles;
 //    }
+////    public String getBoardTemp(){
+////        return tiles.toString();
+////    }
     public HashMap<Coord, HexTile> getTiles(){
         return tiles;
     }

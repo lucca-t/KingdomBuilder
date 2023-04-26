@@ -11,7 +11,7 @@ public class Tester {
         //pulling HexTiles
         Board b = new Board(1, 2, 3, 4);
         String board = "";
-        HashMap tiles = b.getBoard();
+        HashMap tiles = b.getTiles();
         //String tileString = b.getBoardTemp();
         double[] coord = new double[2];
         coord[0] = 0;
@@ -24,7 +24,8 @@ public class Tester {
         Coord c = new Coord(0, 0);
         System.out.println(tiles.get(c));
         //placing settlements
-//        KingdomBuilderMain game = new KingdomBuilderMain();
+        KingdomBuilderMain game = new KingdomBuilderMain();
+        System.out.println(game.getBoard().getTiles().get(c));
 //        ArrayList<double[]> sC = new ArrayList<double[]>();
 //        double[] one = {2, 3.5};
 //        sC.add(one);
