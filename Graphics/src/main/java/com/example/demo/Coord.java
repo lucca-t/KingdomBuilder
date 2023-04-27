@@ -3,12 +3,10 @@ package com.example.demo;
 public class Coord {
     private double x;
     private double y;
-    private int num;
 
     public Coord(double r, double c){
         x = c;
         y = r;
-        num = (int)((x*y + x + y)*10);
     }
 
     public double getX() {
@@ -19,18 +17,13 @@ public class Coord {
         return y;
     }
 
-    @Override
-    public boolean equals(Object c) {
-        Coord coord = (Coord)(c);
-        if (this.x == coord.getX() && this.y == coord.getY()) {
+    public boolean equals(Coord c) {
+        if (this.x == c.getX() && this.y == c.getY()) {
             return true;
         }
         return false;
     }
-    @Override
-    public int hashCode(){
-        return num;
-    }
+
     public String toString() {
         String out = "(" + x + ", " + y + ")";
         return out;

@@ -196,8 +196,7 @@ public class KingdomBuilderMain {
         return board;
     }
 
-    public boolean checkValidPlacement(ArrayList<Coord> sC) {
-
+    public boolean checkValidPlacement(Coord sC, String act, Player p) {
         /** time consuming plans: make a list of all tiles of a certian terrain type
          * make a list of all empty tiles adjacent to settled tiles, use retainAll to find intersection
          * add to list of empty tiles each time a settlement is placed
@@ -205,43 +204,101 @@ public class KingdomBuilderMain {
          * check if contains recognizes identical strings
          * **/
 
-        Action tempHarbor = new Action(5, "Harbor", false);
-        ArrayList<Action> actions = players.get(turn).getActions();
-        ArrayList<String> actionStr = new ArrayList<String>();
-        ArrayList<String> terrainTypes = new ArrayList<String>();
-        boolean terrainMatch = true;
-        for (int a = 0; a < actions.size(); a++) {
-            actionStr.add(actions.get(a).getType());
+        String terrainTypes = board.getTiles().get(sC).getType();
+        if(!board.getTiles().get(sC).getOccupancy().equals(null)){
+            return false;
         }
-        for (int t = 0; t < sC.size(); t++) {
-            terrainTypes.add(0, board.getTiles().get(sC.get(t)).getType());
-            if(!terrainTypes.get(0).equals(players.get(turn).getTerrain())) {
-                terrainMatch = false;
+        if (terrainTypes.equals("m")) {
+            return false;
+        }
+        if (terrainTypes.equals("w") && !act.equals("Harbor")) {
+            return false;
+        }
+        if(act.equals("")){
+            boolean occ = false;
+            if(!terrainTypes.equals(players.get(turn).getTerrain())) {
+                return false;
+            }
+            for(int i = 0; i < p.getOccupiedTiles().size(); i++){
+                if(board.getTiles().get(p.getOccupiedTiles().get(i)).getType().equals(terrainTypes)){
+                    occ = true;
+                }
+            }
+            if(!occ){
+                return true;
+            }
+            for(int i = 0 ; i < findAdjacencies(sC).size(); i++){
+                if(board.getTiles().get(findAdjacencies(sC).get(i)).getOccupancy().equals(p)){
+                    return true;
+                }
+            }
+            return false;
+
+        }
+        if(act.equals("Farm")){
+            if(!terrainTypes.equals("g")){
+                return false;
+            }
+            boolean occ = false;
+            for(int i = 0; i < p.getOccupiedTiles().size(); i++){
+                if(board.getTiles().get(p.getOccupiedTiles().get(i)).getType().equals("g")){
+                    occ = true;
+                }
+            }
+            if(!occ){
+                return true;
+            }
+            for(int i = 0 ; i < findAdjacencies(sC).size(); i++){
+                if(board.getTiles().get(findAdjacencies(sC).get(i)).getOccupancy().equals(p)){
+                    return true;
+                }
+            }
+            return false;
+
+        }
+        if(act.equals("Oasis")){
+            if(!terrainTypes.equals("s")){
+                return false;
+            }
+            boolean occ = false;
+            for(int i = 0; i < p.getOccupiedTiles().size(); i++){
+                if(board.getTiles().get(p.getOccupiedTiles().get(i)).getType().equals("s")){
+                    occ = true;
+                }
+            }
+            if(!occ){
+                return true;
+            }
+            for(int i = 0 ; i < findAdjacencies(sC).size(); i++){
+                if(board.getTiles().get(findAdjacencies(sC).get(i)).getOccupancy().equals(p)){
+                    return true;
+                }
+            }
+            return false;
+        }
+        if(act.equals("Tower")){
+            if(!sC.getX().equals5.5 ){
+
             }
         }
 
-        //checking for forbidden terrains
-        if (terrainTypes.contains("m")) {
-            return false;
-        }
-        if (terrainTypes.contains("w") && !actionStr.contains("Harbor")) {
-                return false;
-        }
-
-        //checking if the settlements are all adjacent
-//        if (board.isAdjacent(sC.get(0), sC.get(1)) && board.isAdjacent(sC.get(0), sC.get(2)) && board.isAdjacent(sC.get(2), sC.get(1))) {
-//            if (terrainMatch == false) {
-//
-//            }
-//        }
-        
-        //for Tavern, make sure extra settlement is place in a line
-        //for Tower, check for edges
-        //Oracle, Farm, and Oasis all allow for extra placement of one tile
-        //With Harbor and Barn, reckeck ownership of actions
-        //if(sC.get(0).isAdjacent(sC.get(1)) && sc.get(1).isAdjacent(sC.get(2)) && sC.get(0).isAdjacent(sC.get(2))) {return true}
-        //iff (sC.get(0).get
-        return false;
+        return true;
+    }
+    public ArrayList<Coord> findAdjacencies(Coord c){
+        ArrayList<Coord> adjacent = new ArrayList<>();
+        Coord right = new Coord(c.getY(), c.getX() + 1);
+        Coord tL = new Coord(c.getY() + 1, c.getX() - 0.5);
+        Coord tR = new Coord(c.getY() + 1, c.getX() + 0.5);
+        Coord bL = new Coord(c.getY() - 1, c.getX()- 0.5);
+        Coord bR = new Coord(c.getY() - 1, c.getX() + 0.5);
+        Coord left = new Coord(c.getY(), c.getX() - 1);
+        adjacent.add(left);
+        adjacent.add(right);
+        adjacent.add(tL);
+        adjacent.add(tR);
+        adjacent.add(bL);
+        adjacent.add(bR);
+        return adjacent;
     }
     public int getTurnNum(){
         return turn;
