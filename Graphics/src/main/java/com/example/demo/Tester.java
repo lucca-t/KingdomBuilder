@@ -21,13 +21,17 @@ public class Tester {
         //printing the HashMap of tiles
         System.out.println(b.toString());
         System.out.println(tiles);
-        Coord c = new Coord(0, 0);
-//        System.out.println(tiles.get(c).toString());
+        Coord c = new Coord(8.0, 0.0);
+        System.out.println(tiles.get((Coord)(c)));
+
+
+
         //placing settlements
         KingdomBuilderMain game = new KingdomBuilderMain();
-        Board b2 = game.getBoard();
-        HashMap gameTiles = b2.getTiles();
-//        HexTile a = gameTiles.get(c);
+//        Board b2 = game.getBoard();
+//        HashMap<Coord, HexTile> gameTiles = new HashMap<Coord, HexTile>();
+//        gameTiles = b2.getTiles();
+////        HexTile a = gameTiles.get(c);
         System.out.println(game.getBoard().getTiles().get(c).toString());
 //        ArrayList<double[]> sC = new ArrayList<double[]>();
 //        double[] one = {2, 3.5};

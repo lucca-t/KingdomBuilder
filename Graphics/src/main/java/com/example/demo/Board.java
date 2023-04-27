@@ -37,7 +37,6 @@ public class Board {
                 else {
                     c = new Coord(y, x + 0.5);
                 }
-//                if (boards[b1][i])
                 tiles.put(c, new HexTile((boards[b1][i])));
                 i++;
             }
@@ -47,13 +46,9 @@ public class Board {
             for (x = 0; x < 10; x++) {
                 if (y%2 == 0) {
                     c = new Coord(y, x);
-//                    coord[0] = y;
-//                    coord[1] = x;
                 }
                 else {
                     c = new Coord(y, x + 0.5);
-//                    coord[0] = y;
-//                    coord[1] = x + 0.5;
                 }
                 tiles.put(c, new HexTile((boards[b2][i])));
                 i++;
@@ -62,16 +57,11 @@ public class Board {
         i = 0;
         for (y = 10; y < 20; y++) {
             for (x = 0; x < 10; x++) {
-                double[] coord = new double[2];
                 if (y%2 == 0) {
                     c = new Coord(y, x);
-                    coord[0] = y;
-                    coord[1] = x;
                 }
                 else {
                     c = new Coord(y, x + 0.5);
-                    coord[0] = y;
-                    coord[1] = x + 0.5;
                 }
                 tiles.put(c, new HexTile((boards[b3][i])));
                 i++;
@@ -80,16 +70,11 @@ public class Board {
         i = 0;
         for (y = 10; y < 20; y++) {
             for (x = 10; x < 20; x++) {
-                double[] coord = new double[2];
                 if (y%2 == 0) {
                     c = new Coord(y, x);
-                    coord[0] = y;
-                    coord[1] = x;
                 }
                 else {
                     c = new Coord(y, x + 0.5);
-                    coord[0] = y;
-                    coord[1] = x + 0.5;
                 }
                 tiles.put(c, new HexTile((boards[b1][i])));
                 i++;
