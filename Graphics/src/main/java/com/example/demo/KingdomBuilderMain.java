@@ -14,8 +14,9 @@ public class KingdomBuilderMain {
     public boolean end;
     private ArrayList<Coord> settlementCords;
 
-    public KingdomBuilderMain () {
-        pointCardsall = new ArrayList<>();
+    public KingdomBuilderMain(){
+        pointCardsall = new ArrayList<String>();
+        pointCards = new ArrayList<String>();
         pointCardsall.add("Citizen");
         pointCardsall.add("Discoverers");
         pointCardsall.add("Farmers");
@@ -71,7 +72,9 @@ public class KingdomBuilderMain {
 //        runGame();
         //choose 4 random numbers out of 8, create a board object passing in the 4 numbers to the constructor in the order they are chosen
     }
-
+    public ArrayList getPointsCards(){
+        return pointCards;
+    }
 
     public void resetTerrainDeck() {
         terrains.clear();
