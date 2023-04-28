@@ -285,13 +285,68 @@ public class KingdomBuilderMain {
             }
             return false;
         }
-//        if(act.equals("Tower")){
-//            if(!sC.getX() == (0.0)){
-//
-//            }
-//        }
+        if(act.equals("Tower")){
+            if((!(sC.getX() == (0.0))) || (!(sC.getX() == (19.0))) || (!(sC.getX() == (19.5))) || (!(sC.getX() == (0.5)))){
+                if((!(sC.getY() == (0.0))) || (!(sC.getY() == (19.0)))){
+                    return false;
+                }
+            }
+            boolean occ = false;
+            for(int i = 0; i < p.getOccupiedTiles().size(); i++){
+                if(board.getTiles().get(p.getOccupiedTiles().get(i)).getType().equals("s")){
+                    occ = true;
+                }
+            }
+            if(!occ){
+                return true;
+            }
+            for(int i = 0 ; i < findAdjacencies(sC).size(); i++){
+                if(board.getTiles().get(findAdjacencies(sC).get(i)).getOccupancy().equals(p)){
+                    return true;
+                }
+            }
+            return false;
+
+        }
 
         return true;
+    }
+    public ArrayList<Coord> findAdjacenciesEdge(Coord c){
+        ArrayList<Coord> adjacent = new ArrayList<>();
+        if(c.getX() == 0.0){
+            if(c.getY() == 0.0){
+                adjacent.add(new Coord(c.getY() + 1, c.getX() + 0.5));
+                adjacent.add(new Coord(c.getY(), c.getX() + 1));
+            }
+            adjacent.add(new Coord(c.getY(), c.getX() + 1));
+            adjacent.add(new Coord(c.getY() - 1, c.getX() + 0.5));
+            adjacent.add(new Coord(c.getY() + 1, c.getX() + 0.5));
+            return adjacent;
+        }
+        if(c.getX() == 0.5){
+            if(c.getY() == 19.0){
+                adjacent.add(new Coord(c.getY() - 1, c.getX() - 0.5));
+                adjacent.add(new Coord(c.getY() - 1, c.getX() + 0.5));
+                adjacent.add(new Coord(c.getY(), c.getX() + 1));
+            }
+            adjacent.add(new Coord(c.getY() - 1, c.getX() - 0.5));
+            adjacent.add(new Coord(c.getY() - 1, c.getX() + 0.5));
+            adjacent.add(new Coord(c.getY(), c.getX() + 1));
+            adjacent.add(new Coord(c.getY() + 1, c.getX() - 0.5));
+            adjacent.add(new Coord(c.getY() + 1, c.getX() + 0.5));
+            return adjacent;
+        }
+        if(c.getX() == 19.0){
+            if(c.getY() == 0.0){
+                adjacent.add(new Coord(c.getY() + 1, c.getX() + 0.5));
+                adjacent.add(new Coord(c.getY(), c.getX() + 1));
+            }
+            adjacent.add(new Coord(c.getY(), c.getX() + 1));
+            adjacent.add(new Coord(c.getY() - 1, c.getX() + 0.5));
+            adjacent.add(new Coord(c.getY() + 1, c.getX() + 0.5));
+            return adjacent;
+        }
+
     }
     public ArrayList<Coord> findAdjacencies(Coord c){
         ArrayList<Coord> adjacent = new ArrayList<>();
