@@ -21,7 +21,7 @@ public class Tester {
         //printing the HashMap of tiles
         System.out.println(b.toString());
         System.out.println(tiles);
-        Coord c = new Coord(8.0, 0.0);
+        Coord c = new Coord(0.0, 0.0);
         System.out.println(tiles.get((Coord)(c)));
 
 

@@ -3,6 +3,7 @@ package com.example.demo;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Collection;
 
 public class KingdomBuilderMain {
     private ArrayList<Player> players;
@@ -28,21 +29,27 @@ public class KingdomBuilderMain {
         pointCardsall.add("Miners");
         pointCardsall.add("Workers");
 
+        ArrayList<Integer> choose = new ArrayList<Integer>();
+        for (int a = 0; a < 4; a++) {
+            choose.add(a);
+        }
+        Collections.shuffle(choose);
         //choosing boards
-        num1 = (int)(Math.random() * 3);
-        num2 = (int)(Math.random() * 3);
-        while(num1==num2){
-            num2 = (int)(Math.random() * 3);
-        }
-        num3 = (int)(Math.random() * 3);
-        while(num3==num1 || num3==num2) {
-            num3 = (int)(Math.random() * 3);
-        }
-        num4 = (int)(Math.random() * 3);
-        while(num4 == num1 || num4 == num2 || num4 == num3){
-            num4 = (int)(Math.random() * 3);
-        }
-        board = new Board(num1, num2, num3, num4);
+//        num1 = (int)(Math.random() * 3);
+//        num2 = (int)(Math.random() * 3);
+//        while(num1==num2){
+//            num2 = (int)(Math.random() * 3);
+//        }
+//        num3 = (int)(Math.random() * 3);
+//        while(num3==num1 || num3==num2) {
+//            num3 = (int)(Math.random() * 3);
+//        }
+//        num4 = (int)(Math.random() * 3);
+//        while(num4 == num1 || num4 == num2 || num4 == num3){
+//            num4 = (int)(Math.random() * 3);
+//        }
+        board = new Board(choose.get(0), choose.get(1), choose.get(2), choose.get(3));
+        players = new ArrayList<Player>();
         players.add(new Player("red"));
         players.add(new Player("purple"));
         players.add(new Player("pink"));
@@ -53,6 +60,7 @@ public class KingdomBuilderMain {
             pointCardsall.remove(x);
         }
         turn = 0;
+        terrains = new ArrayList<Card>();
         resetTerrainDeck();
 //        terrains.add("s");
 //        terrains.add("g");
@@ -68,9 +76,7 @@ public class KingdomBuilderMain {
             players.get(j).setTerrain(terrains.get(choiceTerrain));
             terrains.remove(choiceTerrain);
         }
-        Coord settlementCords = new Coord(0.0, 0.0);
-//        runGame();
-        //choose 4 random numbers out of 8, create a board object passing in the 4 numbers to the constructor in the order they are chosen
+        settlementCords = new ArrayList<Coord>();
     }
     public ArrayList getPointsCards(){
         return pointCards;
