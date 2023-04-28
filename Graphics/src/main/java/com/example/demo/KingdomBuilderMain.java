@@ -68,7 +68,7 @@ public class KingdomBuilderMain {
             players.get(j).setTerrain(terrains.get(choiceTerrain));
             terrains.remove(choiceTerrain);
         }
-        settlementCords = new ArrayList<Coord>();
+        Coord settlementCords = new Coord(0.0, 0.0);
 //        runGame();
         //choose 4 random numbers out of 8, create a board object passing in the 4 numbers to the constructor in the order they are chosen
     }
@@ -104,9 +104,9 @@ public class KingdomBuilderMain {
         return players.get(turn);
     }
 
-    public void setSettlementCord(ArrayList<Coord> sC) {
-        if (checkValidPlacement(sC)) {
-            settlementCords = sC;
+    public void setSettlementCord(Coord sC) {
+        if (checkValidPlacement(sC, "", players.get(0))) {
+//            settlementCords = sC;
         }
     }
 
