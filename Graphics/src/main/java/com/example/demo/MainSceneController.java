@@ -84,7 +84,7 @@ public class MainSceneController {
     private Button useBonusButton;
     private KingdomBuilderMain game;
     public MainSceneController(){
-         //game = new KingdomBuilderMain();
+         game = new KingdomBuilderMain();
 
         //ArrayList players =game.getPlayers();
        //game.getTurnPlayer();
