@@ -279,11 +279,11 @@ public class KingdomBuilderMain {
             }
             return false;
         }
-        if(act.equals("Tower")){
-            if(!sC.getX().equals5.5 ){
-
-            }
-        }
+//        if(act.equals("Tower")){
+//            if(!sC.getX() == (0.0)){
+//
+//            }
+//        }
 
         return true;
     }
