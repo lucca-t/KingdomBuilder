@@ -29,26 +29,13 @@ public class KingdomBuilderMain {
         pointCardsall.add("Miners");
         pointCardsall.add("Workers");
 
-        ArrayList<Integer> choose = new ArrayList<Integer>();
-        for (int a = 0; a < 4; a++) {
-            choose.add(a);
-        }
-        Collections.shuffle(choose);
         //choosing boards
-//        num1 = (int)(Math.random() * 3);
-//        num2 = (int)(Math.random() * 3);
-//        while(num1==num2){
-//            num2 = (int)(Math.random() * 3);
-//        }
-//        num3 = (int)(Math.random() * 3);
-//        while(num3==num1 || num3==num2) {
-//            num3 = (int)(Math.random() * 3);
-//        }
-//        num4 = (int)(Math.random() * 3);
-//        while(num4 == num1 || num4 == num2 || num4 == num3){
-//            num4 = (int)(Math.random() * 3);
-//        }
+        ArrayList<Integer> choose = new ArrayList<Integer>();
+        for (int a = 0; a < 4; a++) {choose.add(a);}
+        Collections.shuffle(choose);
         board = new Board(choose.get(0), choose.get(1), choose.get(2), choose.get(3));
+
+        //players
         players = new ArrayList<Player>();
         players.add(new Player("red"));
         players.add(new Player("purple"));
@@ -71,11 +58,13 @@ public class KingdomBuilderMain {
 //        terrains.add("f");
         discardedBiomes = new ArrayList<String>();
         end = false;
-        for (int j = 0; j < players.size(); j++) {
-            int choiceTerrain = (int)(Math.random()*25);
-            players.get(j).setTerrain(terrains.get(choiceTerrain));
-            terrains.remove(choiceTerrain);
-        }
+
+        Collections.shuffle(terrains);
+//        for (int j = 0; j < players.size(); j++) {
+////            int choiceTerrain = (int)(Math.random()*25);
+//            players.get(j).setTerrain(terrains.get(choiceTerrain));
+//            terrains.remove(choiceTerrain);
+//        }
         settlementCords = new ArrayList<Coord>();
     }
     public ArrayList getPointsCards(){

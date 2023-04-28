@@ -23,29 +23,15 @@ public class Tester {
         System.out.println(tiles);
         Coord c = new Coord(0.0, 0.0);
         System.out.println(tiles.get((Coord)(c)));
-
-
-
-        //placing settlements
+        //printing out the HashMap of tiles and retreiving through the KingdomBuilderMain class
         KingdomBuilderMain game = new KingdomBuilderMain();
-//        Board b2 = game.getBoard();
-//        HashMap<Coord, HexTile> gameTiles = new HashMap<Coord, HexTile>();
-//        gameTiles = b2.getTiles();
-////        HexTile a = gameTiles.get(c);
+        System.out.println(game.getBoard().getTiles().toString());
         System.out.println(game.getBoard().getTiles().get(c).toString());
-//        ArrayList<double[]> sC = new ArrayList<double[]>();
-//        double[] one = {2, 3.5};
-//        sC.add(one);
-//        double[] two = {3, 3};
-//        sC.add(two);
-//        double[] three = {2, 4.5};
-//        sC.add(three);
-//        game.setSettlementCord(sC);
-//
-//        String occupancies = "";
-//        for (int i = 0; i < sC.size(); i++) {
-//             occupancies += game.getBoard().getTiles().get(sC.get(i)).getOccupancy().getColor() + " ";
-//        }
-////        System.out.println(occupancies);
+        //random assignment of terrain
+        ArrayList<Player> players = game.getPlayers();
+        for (int t = 0; t < 4; t++) {
+            System.out.println(t + " : " + players.get(t).getTerrain());
+        }
+
     }
 }
