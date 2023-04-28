@@ -58,11 +58,13 @@ public class KingdomBuilderMain {
 //        terrains.add("f");
         discardedBiomes = new ArrayList<String>();
         end = false;
-        for (int j = 0; j < players.size(); j++) {
-            int choiceTerrain = (int)(Math.random()*25);
-            players.get(j).setTerrain(terrains.get(choiceTerrain));
-            terrains.remove(choiceTerrain);
-        }
+
+        Collections.shuffle(terrains);
+//        for (int j = 0; j < players.size(); j++) {
+////            int choiceTerrain = (int)(Math.random()*25);
+//            players.get(j).setTerrain(terrains.get(choiceTerrain));
+//            terrains.remove(choiceTerrain);
+//        }
         settlementCords = new ArrayList<Coord>();
     }
     public ArrayList getPointsCards(){

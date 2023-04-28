@@ -28,6 +28,10 @@ public class Tester {
         System.out.println(game.getBoard().getTiles().toString());
         System.out.println(game.getBoard().getTiles().get(c).toString());
         //random assignment of terrain
+        ArrayList<Player> players = game.getPlayers();
+        for (int t = 0; t < 4; t++) {
+            System.out.println(t + " : " + players.get(t).getTerrain());
+        }
 
     }
 }

@@ -10,6 +10,10 @@ public class Card {
 
     public boolean getVisibility() {return visible;}
 
+    public String toString() {
+        return type;
+    }
+
 //    public int scoreMerchants() {
 //    }
 }
